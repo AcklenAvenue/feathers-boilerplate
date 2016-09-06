@@ -146,7 +146,7 @@ gulp.task('watch', function () {
 
 gulp.task('deploy', (callback) => {
 	return runSequence(
-		'zip-app', 'update-elastic-beanstalk', 'create-picture-bucket',
+		'zip-app', 'update-elastic-beanstalk',
 		callback
 	);
 });
