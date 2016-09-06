@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -eox pipefail
 echo "--- Set Node Version"
 . "$NVM_DIR/nvm.sh"
 nvm current
@@ -8,7 +8,6 @@ nvm use 4
 echo "--- Install Dependencies"
 npm install -g gulp
 npm install
-npm update
 echo "--- Build And Test"
 npm test
 if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
