@@ -1,4 +1,3 @@
-
 var mysqlAdapter = require('sails-mysql');
 
 module.exports = {
@@ -6,7 +5,7 @@ module.exports = {
   // Setup Adapters
   // Creates named adapters that have been required
   adapters: {
-    'default': mysqlAdapter,
+    'default': 'db2',
     db2: {
         module   : 'sails-db2',
         host     : 'localhost',
@@ -29,7 +28,9 @@ module.exports = {
     mySqlConnection: {
       adapter: 'mysql',
       host: 'localhost',
-      database: 'foobar'
+      database: 'indigo',
+      user:'root',
+      password:''
     }
   },
 
