@@ -28,8 +28,11 @@ app.use(compress())
   .configure(hooks())
   .configure(rest())
   .configure(socketio())
-  .configure(primus({ transformer: 'websockets' }))
-  .configure(services)
-  .configure(middleware);
+  .configure(primus({ transformer: 'websockets' }));
+
+  Promise.all(services.get(app)).then(() => {
+    app.configure(middleware);
+  });
+
 
 module.exports = app;

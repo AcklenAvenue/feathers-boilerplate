@@ -5,7 +5,7 @@ const Waterline = require('waterline');
 module.exports = Waterline.Collection.extend({
   identity: 'user',
   schema: true,
-  connection: 'db2Connection',
+  connection: 'mySqlConnection',
   attributes: {
     email: {
       type: 'string',
