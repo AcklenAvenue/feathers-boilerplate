@@ -1,29 +1,43 @@
 'use strict';
 
-const service = require('feathers-sequelize');
+const Waterline = require('waterline');
+const service = require('feathers-waterline');
 const user = require('./user-model');
 const hooks = require('./hooks');
+const config = require('../../../config/config')
+
 
 module.exports = function(){
   const app = this;
+  const ORM = new Waterline();
 
-  const options = {
-    Model: user(app.get('sequelize')),
-    paginate: {
-      default: 5,
-      max: 25
+  ORM.loadCollection(user);
+  ORM.initialize(config, (error, data) => {
+
+    if (error) {
+      console.error(error);
     }
-  };
 
-  // Initialize our service with any options it requires
-  app.use('/users', service(options));
+    const options = {
+      Model: data.collections.user,
+      paginate: {
+        default: 5,
+        max: 25
+      }
+    };
 
-  // Get our initialize service to that we can bind hooks
-  const userService = app.service('/users');
+      // Initialize our service with any options it requires
+    app.use('/users', service(options));
 
-  // Set up our before hooks
-  userService.before(hooks.before);
+    // Get our initialize service to that we can bind hooks
+    const userService = app.service('/users');
 
-  // Set up our after hooks
-  userService.after(hooks.after);
+    // Set up our before hooks
+    userService.before(hooks.before);
+
+    // Set up our after hooks
+    userService.after(hooks.after);
+
+  });
+
 };
