@@ -1,12 +1,12 @@
 {
   "host": "localhost",
   "port": 3030,
-  "mysql": "mysql://root:@localhost:3306/indigoBackend",
+  "mysql": "mysql://root:123456789@localhost:3306/indigoBackend",
   "public": "../public/",
   "auth": {
     "idField": "id",
     "token": {
-      "secret": "+L0Zc6WZe5BvHtZ57lpR2iEdFKgG+iyz+Z8Ls89EKH80pZls2SxfXk/ywRQ2THrQwsUe+i/UWm4i2HDk7m7b0w=="
+      "secret": "wSzT/XLoMCO2JZvDQohu9iusdSG1nSPYukn4j3Ls02kd7dJJrQETDcagvRclQON9XgPBdPvCd5zpshINr2EdIQ=="
     },
     "local": {},
     "facebook": {

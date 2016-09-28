@@ -1,6 +1,6 @@
 # indigo-backend
 
-> Indigo Backend Project
+> Indigo Backend
 
 ## About
 

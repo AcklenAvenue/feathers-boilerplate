@@ -1,19 +1,36 @@
 'use strict';
 
-const Waterline = require('waterline');
+// user-model.js - A sequelize model
+// 
+// See http://docs.sequelizejs.com/en/latest/docs/models-definition/
+// for more of what you can do here.
 
-module.exports = Waterline.Collection.extend({
-  identity: 'user',
-  schema: true,
-  connection: 'mySqlConnection',
-  attributes: {
+const Sequelize = require('sequelize');
+
+module.exports = function(sequelize) {
+  const user = sequelize.define('users', {
+    facebookId: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    googleId: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
     email: {
-      type: 'string',
-      required: true
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
     },
     password: {
-      type: 'string',
-      required: true
+      type: Sequelize.STRING,
+      allowNull: false
     }
-  }
-});
+  }, {
+    freezeTableName: true
+  });
+
+  user.sync();
+
+  return user;
+};
