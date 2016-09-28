@@ -29,3 +29,6 @@ node_modules
 
 lib/
 data/
+
+# Default configuration
+config/default.json
