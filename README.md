@@ -1,6 +1,4 @@
-# indigo-backend
-
-> Indigo Backend
+# feathers-boilerplate
 
 ## About
 
