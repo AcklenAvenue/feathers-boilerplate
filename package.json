@@ -17,8 +17,9 @@
   },
   "scripts": {
     "postinstall": "gulp copy-default-json",
+    "prestart": "gulp compile",
+    "dev": "gulp dev",
     "test": "npm run jshint && npm run mocha",
-    "jshint": "jshint src/. test/. --config",
     "start": "node dist/",
     "mocha": "mocha test/ --recursive"
   },
