@@ -1,4 +1,3 @@
-'use strict';
 
 const authentication = require('feathers-authentication');
 
@@ -7,11 +6,11 @@ const FacebookTokenStrategy = require('passport-facebook-token');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GoogleTokenStrategy = require('passport-google-token').Strategy;
 
-module.exports = function() {
+module.exports = function () {
   const app = this;
 
-  let config = app.get('auth');
-  
+  const config = app.get('auth');
+
   config.facebook.strategy = FacebookStrategy;
   config.facebook.tokenStrategy = FacebookTokenStrategy;
   config.google.strategy = GoogleStrategy;

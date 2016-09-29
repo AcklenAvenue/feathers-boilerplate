@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable no-unused-vars, no-console */
 
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
@@ -9,35 +9,35 @@ exports.before = {
   find: [
     auth.verifyToken(),
     auth.populateUser(),
-    auth.restrictToAuthenticated()
+    auth.restrictToAuthenticated(),
   ],
   get: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    auth.restrictToOwner({ ownerField: 'id' }),
   ],
   create: [
-    auth.hashPassword()
+    auth.hashPassword(),
   ],
   update: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    auth.restrictToOwner({ ownerField: 'id' }),
   ],
   patch: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    auth.restrictToOwner({ ownerField: 'id' }),
   ],
   remove: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
-  ]
+    auth.restrictToOwner({ ownerField: 'id' }),
+  ],
 };
 
 exports.after = {
@@ -47,5 +47,5 @@ exports.after = {
   create: [],
   update: [],
   patch: [],
-  remove: []
+  remove: [],
 };
