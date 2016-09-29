@@ -2,7 +2,9 @@ const gulp = require('gulp');
 const tslint = require("gulp-tslint");
 const eslint = require('gulp-eslint');
 
-gulp.task("lint", () =>
+gulp.task('lint', ['tslint', 'eslint']);
+
+gulp.task("tslint", () =>
     gulp.src("src/**/*.ts")
         .pipe(tslint({
             formatter: "verbose"

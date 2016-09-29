@@ -9,16 +9,9 @@ const environment = process.env.ENVIRONMENT || 'dev';
 const appName = 'indigo-backend';
 
 
-gulp.task('watch', function() {
-  nodemon({
-    script: 'server.js',
-    ext: 'js'
-  })
-})
-
 gulp.task('default', (callback) => {
   return runSequence(
-    'clean-dist', 'lint', 'test',
+    'clean-dist',  'compile', 'test',
     callback
   );
 });

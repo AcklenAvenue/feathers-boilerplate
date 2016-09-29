@@ -2,17 +2,18 @@ module.exports = function (wallaby) {
   return {
     files: [
       'src/**/*.js',
+      'src/**/*.ts',
       'config/*.*',
-      'public/*.*'
+      'public/*.*',
     ],
 
     tests: [
-      'test/**/*test.js'
+      'test/**/*test.js',
     ],
 
     env: {
-      type: 'node'
-    }
+      type: 'node',
+    },
 
 
   };
