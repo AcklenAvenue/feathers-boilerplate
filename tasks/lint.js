@@ -1,8 +1,20 @@
 const gulp = require('gulp');
+const tslint = require("gulp-tslint");
 const eslint = require('gulp-eslint');
-gulp.task('lint', function() {
-  return gulp.src(['!node_modules/**', './server.js', 'app/**/*.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+
+gulp.task("lint", () =>
+    gulp.src("src/**/*.ts")
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report())
+);
+
+
+
+gulp.task('eslint', () => {
+    return gulp.src(['src/**/*.js','!node_modules/**'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });
