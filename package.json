@@ -65,6 +65,7 @@
     "gulp-shell": "^0.5.2",
     "gulp-tslint": "^6.1.2",
     "gulp-typescript": "^3.0.1",
+    "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0",
     "i": "^0.3.5",
     "jshint": "^2.9.3",
