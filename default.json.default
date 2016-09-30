@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "mysql": "mysql://ddubon:FAJARDO2indig!@localhost:3306/Indigo",
+  "mysql": "mysql://UID:Pass@localhost:3306/DB",
   "public": "../public/",
   "auth": {
     "idField": "id",
