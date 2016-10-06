@@ -8,11 +8,13 @@ nvm use 4
 echo "--- Install Dependencies"
 npm install -g gulp
 npm update
-echo "--- Build And Test"
+echo "--- Build"
 if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
   export NODE_ENV=dev
 fi
 gulp compile
+echo "--- Test"
+gulp test
 if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
   echo "--- deploy to develop"
   gulp deploy
