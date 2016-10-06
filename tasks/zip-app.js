@@ -6,7 +6,7 @@ const appName = 'indigo-backend';
 
 gulp.task('zip-app', () => {
   return gulp.src([
-			'./dist/**/*.*','./.ebextensions/**/*.*'
+			'./dist/**/*.*','./.ebextensions/**/*.*','package.json'
     ], {
       base: './'
     })
