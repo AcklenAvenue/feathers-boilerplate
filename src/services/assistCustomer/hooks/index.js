@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars, no-console */
+/* eslint-disable */
+'use strict';
 
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
-const auth = require('feathers-authentication').hooks;
-const createAssistCustomer = require('./createAssistCustomer');
+
 
 exports.before = {
   all: [],
@@ -12,15 +12,15 @@ exports.before = {
   create: [],
   update: [],
   patch: [],
-  remove: [],
+  remove: []
 };
 
 exports.after = {
   all: [],
   find: [],
   get: [],
-  create: [createAssistCustomer()],
+  create: [],
   update: [],
   patch: [],
-  remove: [],
+  remove: []
 };

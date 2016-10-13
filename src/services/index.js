@@ -1,4 +1,5 @@
 
+const assistCustomer = require('./assistCustomer');
 const customer = require('./customer');
 const authentication = require('./authentication');
 const user = require('./user');
@@ -15,4 +16,5 @@ module.exports = function () {
   app.configure(authentication);
   app.configure(user);
   app.configure(customer);
+  app.configure(assistCustomer);
 };
