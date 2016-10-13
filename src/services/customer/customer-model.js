@@ -16,9 +16,17 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    userId: {
+      required: true,
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
   }, {
     freezeTableName: true,
+    initialAutoIncrement: '1000',
   });
+
+  customer.belongsTo(sequelize.models.users);
 
   customer.sync();
 

@@ -25,10 +25,10 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-  },
-    {
-      freezeTableName: true,
-    });
+  }, {
+    freezeTableName: true,
+    initialAutoIncrement: '1000',
+  });
 
   user.sync();
 
