@@ -36,9 +36,11 @@ class Service {
               taxId: '',
               assistCustomerNumber: newAssistsCustomerNumber,
               addressSequenceNumber: '0',
+              billingAddress: data.billingAddress,
+              email: data.user.email
             };
             const customerQueries = new customerQuery();
-            const queries = customerQueries.getCustomerInsertQueries(thisOptions.library, thisOptions.companyNumber, customerInfo, 'test@test.com');
+            const queries = customerQueries.getCustomerInsertQueries(thisOptions.library, thisOptions.companyNumber, customerInfo, data.user.email);
 
             connDB2.query(queries[0], function (err, data) {
                 if (err) console.log('Header: \n' + err);
@@ -59,11 +61,6 @@ class Service {
                 }
             });
         });
-
-
-////////////////////////
-
-
   }
 
   update(id, data, params) {

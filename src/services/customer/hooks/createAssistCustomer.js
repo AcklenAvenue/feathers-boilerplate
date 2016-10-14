@@ -13,7 +13,7 @@ module.exports = function (options) {
   options = Object.assign({}, defaults, options);
   return function (hook) {
     const assistCustomerService = hook.app.service('/assistCustomers');
-    assistCustomerService.create(hook.result.dataValues);
+    assistCustomerService.create(hook.result);
     hook.createAssistCustomer = true;
   };
 };

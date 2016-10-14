@@ -108,9 +108,9 @@ class CustomerQueries {
     const header = this.getCustomerHeaderInsert(customerInfo.inquisicartCustomerNumber,
       customerInfo.companyName, customerInfo.sicCode, customerInfo.taxId,
       customerInfo.assistCustomerNumber, userEmail);
-    const address = this.getCustomerAddressInsert(customerInfo.inquisicartCustomerNumber, '0', customerInfo.companyName, 'Address line 1 test',
-      'Address line test 2', 'Address line test 3', 'SPS', 'FLA', '90210', 'USA', 'mail1@mail1.com',
-      'mail2@mail2.com', userEmail);
+    const address = this.getCustomerAddressInsert(customerInfo.inquisicartCustomerNumber, '0', customerInfo.companyName, customerInfo.billingAddress,
+      '', '', '', '', '', '', customerInfo.email,
+      '', userEmail);
     const sfaction = this.notifyCustomerIsReady(customerInfo.inquisicartCustomerNumber,
       customerInfo.addressSequenceNumber, moment().format('YYYYMMDD'), moment().format('HHmmss'));
     return [header.toString(), address.toString(), sfaction.toString()];
