@@ -1,5 +1,5 @@
 
-// user-model.js - A sequelize model
+// customer-model.js - A sequelize model
 //
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
@@ -7,22 +7,22 @@
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {
-  const user = sequelize.define('users', {
-    facebookId: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-    googleId: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-    email: {
+  const customer = sequelize.define('customers', {
+    firstName: {
       type: Sequelize.STRING,
       allowNull: false,
-      unique: true,
     },
-    password: {
+    lastName: {
       type: Sequelize.STRING,
+      allowNull: false,
+    },
+    billingAddress: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    userId: {
+      required: true,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
   }, {
@@ -30,7 +30,9 @@ module.exports = (sequelize) => {
     initialAutoIncrement: '1000',
   });
 
-  user.sync();
+  customer.belongsTo(sequelize.models.users);
 
-  return user;
+  customer.sync();
+
+  return customer;
 };
