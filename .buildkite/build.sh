@@ -6,8 +6,7 @@ echo "--- Set Node Version"
 nvm current
 nvm use 4
 echo "--- Install Dependencies"
-npm install -g gulp
-npm update
+yarn
 echo "--- Build"
 if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
   export NODE_ENV=dev
