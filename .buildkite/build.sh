@@ -8,6 +8,8 @@ nvm use 4
 echo "--- Install Dependencies"
 yarn
 echo "--- Build"
+gulp copy-default-json
+gulp clean-dist
 gulp compile
 echo "--- Test"
 gulp test
