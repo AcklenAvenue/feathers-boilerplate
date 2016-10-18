@@ -1,9 +1,14 @@
-- command: '/.buildkite/build.sh'
-  name: ':hammer: Build and Tests'
-  agents:
-    node: 'true'
-    nvm: 'true'
-  parallelism: 1
-  concurrency: 1
-  concurrency_group: 'build_test'
-  timeout_in_minutes: 60
+steps:
+  - name: ':hammer: Build'
+    command: '/.buildkite/build.sh'
+
+  - wait
+
+  - name: ':fire: Test'
+    command: '/.buildkite/test.sh'
+
+  - wait
+
+  - name: ':rocket: Deploy'
+    command: '/.buildkite/deploy.sh'
+    branches: 'develop staging master'
