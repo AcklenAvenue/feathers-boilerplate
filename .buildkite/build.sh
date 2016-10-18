@@ -8,9 +8,6 @@ nvm use 4
 echo "--- Install Dependencies"
 yarn
 echo "--- Build"
-if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
-  export NODE_ENV=dev
-fi
 gulp compile
 echo "--- Test"
 gulp test

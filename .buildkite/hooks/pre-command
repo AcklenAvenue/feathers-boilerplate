@@ -1,0 +1,11 @@
+#!/bin/bash
+if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
+  export NODE_ENV=dev
+fi
+if [[ "$BUILDKITE_BRANCH" == "staging"  ]]; then
+  export NODE_ENV=staging
+fi
+if [[ "$BUILDKITE_BRANCH" == "master"  ]]; then
+  export NODE_ENV=production
+fi
+env
