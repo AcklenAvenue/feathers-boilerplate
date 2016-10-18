@@ -11,20 +11,3 @@ echo "--- Build"
 gulp copy-default-json
 gulp clean-dist
 gulp compile
-echo "--- Test"
-gulp test
-if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
-  echo "--- deploy to develop"
-  gulp deploy
-  buildkite-agent artifact upload "zip/**/*.zip"
-fi
-if [[ "$BUILDKITE_BRANCH" == "staging"  ]]; then
-  echo "--- deploy to staging"
-  gulp deploy
-  buildkite-agent artifact upload "zip/**/*.zip"
-fi
-if [[ "$BUILDKITE_BRANCH" == "master"  ]]; then
-  echo "--- deploy to production"
-  gulp deploy
-  buildkite-agent artifact upload "zip/**/*.zip"
-fi

@@ -8,4 +8,3 @@ fi
 if [[ "$BUILDKITE_BRANCH" == "master"  ]]; then
   export NODE_ENV=production
 fi
-env
