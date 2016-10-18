@@ -1,7 +1,7 @@
 {
-  "host": "localhost",
+  "host": "indigo-backend-dev.us-east-1.elasticbeanstalk.com",
   "port": 3030,
-  "mysql": "mysql://root:123456789@localhost:3306/IndigoBackend",
+  "mysql": "mysql://admin:admin123@indigo-mysql-dev.c0xjitcfqke4.us-east-1.rds.amazonaws.com:3306/indigo_mysql_dev",
   "public": "../public/",
   "auth": {
     "idField": "id",

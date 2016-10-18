@@ -29,6 +29,8 @@ dist
 
 lib/
 data/
+zip
 
 # Default configuration
 config/default.json
+bk-*.log
