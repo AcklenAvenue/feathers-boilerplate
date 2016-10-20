@@ -6,7 +6,7 @@ echo "--- Set Node Version"
 nvm current
 nvm use 4
 echo "--- Install Dependencies"
-yarn
+npm install
 echo "--- Build"
 gulp copy-default-json
 gulp clean-dist
