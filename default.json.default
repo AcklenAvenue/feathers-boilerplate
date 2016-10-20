@@ -23,5 +23,14 @@
         "scope": ["profile"]
       }
     }
+  },
+  "AS400": {
+    "host": "",
+    "user": "",
+    "password": "",
+    "port": 0,
+    "library": "",
+    "database": "",
+    "companyNumber": ""
   }
 }
