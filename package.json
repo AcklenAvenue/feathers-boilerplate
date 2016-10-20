@@ -16,6 +16,7 @@
     "node": ">= 0.12.0"
   },
   "scripts": {
+    "jshint": "jshint",
     "postinstall": "gulp copy-default-json",
     "prestart": "gulp compile",
     "dev": "gulp dev",
