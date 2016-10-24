@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "mysql": "mysql://admin:admin123@viatstinquisicart01.inquisicorp.com:3306/indigo_staging",
+  "mysql": "mysql://admin:admin123@localhost:3306/indigo_staging",
   "public": "../public/",
   "auth": {
     "idField": "id",
