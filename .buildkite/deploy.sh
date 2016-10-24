@@ -7,5 +7,3 @@ nvm use default
 echo "--- Deploy to $BUILDKITE_BRANCH"
 gulp deploy | tee -a bk-pipeline.log
 buildkite-agent artifact upload "zip/*.zip"
-gulp prepare-deployment | tee -a bk-pipeline.log
-expect ./.buildkite/stagingDeploy.sh | tee -a bk-pipeline.log
