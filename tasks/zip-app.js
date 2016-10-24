@@ -21,3 +21,16 @@ gulp.task('zip-app', () => {
     .pipe(zip(`${appName}-${environment}.zip`))
     .pipe(gulp.dest('./zip'));
 });
+
+gulp.task('prepare-deployment', () => {
+  return gulp.src([
+			'./dist/**/*.*',
+      ,'package.json'
+      ,'./config/**/*.*'
+      ,'./public/**/*.*'
+
+    ], {
+      base: './'
+    })
+    .pipe(gulp.dest('./build'));
+});

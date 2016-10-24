@@ -27,6 +27,7 @@ dist
 # Users Environment Variables
 .lock-wscript
 
+build/
 lib/
 data/
 zip
