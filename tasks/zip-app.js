@@ -26,9 +26,11 @@ gulp.task('prepare-deployment', () => {
   return gulp.src([
 			'./dist/**/*.*',
       ,'package.json'
+      ,'gulpfile.js'
+      ,'./task/**/*.*'
+      ,'tsconfig.json'
       ,'./config/**/*.*'
       ,'./public/**/*.*'
-
     ], {
       base: './'
     })
