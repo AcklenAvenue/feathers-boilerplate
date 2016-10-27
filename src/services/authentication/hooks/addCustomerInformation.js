@@ -18,7 +18,8 @@ module.exports = function (options) {
         userId: hook.result.data.id
       }
     }).then(customerData => {
-      hook.result.data.customer = customerData.data[0].dataValues;
+      const customerInformation = customerData.data;
+      hook.result.data.customer = customerInformation.length > 0 ? customerInformation[0].dataValues : {};
     });
   };
 };
