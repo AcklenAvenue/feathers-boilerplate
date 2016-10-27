@@ -24,7 +24,7 @@ class Service {
             }
 
             const query = 'select IAPRT# as assistCode, IA101 as name, IA103 as description from astdta.ICPRTMIA  where IACOM# = \'' +
-              params.query.companyNumber +'\' and IAPRT# = \'' +
+              thisOptions.companyNumber +'\' and IAPRT# = \'' +
               id +'\' and IAWEBF = 1';
             var rowsAssistProduct = connDB2.querySync(query);
 

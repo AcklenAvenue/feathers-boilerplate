@@ -48,7 +48,7 @@ class CustomerQueries {
     const insertOrderDetail = squel.insert().into(this.getTable('T_ADDRESS'))
           .setFields(
       {
-        ADDR_CMCD: '001',
+        ADDR_CMCD: this.companyNumber,
         ADDR_CSTCD: webCartCustomerNumber,
         ADDR_ADSQ: addressSequence,
         ADDR_PMSQ: '0',
@@ -87,7 +87,7 @@ class CustomerQueries {
 
       {
         ONTYPE: 'REG',
-        ONKEY1: '001',
+        ONKEY1: this.companyNumber,
         ONKEY2: customerNumber,
         ONKEY3: addressSequenceNumber,
         ONDATE: date,
