@@ -4,7 +4,6 @@ const hooks = require('./hooks');
 
 module.exports = function () {
   const app = this;
-
   const options = {
     Model: customer(app.get('sequelize')),
     paginate: {
