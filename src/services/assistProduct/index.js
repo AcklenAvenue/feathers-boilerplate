@@ -15,6 +15,7 @@ class Service {
 
   get(id, params) {
     const thisOptions = this.options;
+    console.log(id);
     return new Promise((resolve, reject) => {
       ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
         function (errDB2, connDB2) {
@@ -29,6 +30,7 @@ class Service {
             var rowsAssistProduct = connDB2.querySync(query);
 
             if (rowsAssistProduct && rowsAssistProduct.length > 0) {
+              console.log(rowsAssistProduct);
               resolve({
                 assistCode: rowsAssistProduct[0].ASSISTCODE.trim(),
                 name: rowsAssistProduct[0].NAME.trim(),
