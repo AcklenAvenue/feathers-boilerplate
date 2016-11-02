@@ -6,7 +6,6 @@ echo "--- Set Node Version"
 nvm use default
 echo "--- Deploy to $BUILDKITE_BRANCH"
 #gulp deploy | tee -a bk-pipeline.log
-gulp zip-app
 cd zip
 sudo cp ~/acklenavenue.pem acklenavenue.pem
 sudo chmod 400 acklenavenue.pem

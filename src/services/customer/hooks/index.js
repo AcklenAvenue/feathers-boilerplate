@@ -20,7 +20,7 @@ exports.after = {
   find: [],
   get: [],
   create: [hooks.populate('user', { field: 'userId', service: '/users' }),
-           hooks.remove('user.password', 'user.facebookId', 'user.googleId', hook => true), createAssistCustomer()],
+    hooks.remove('user.password', 'user.facebookId', 'user.googleId', hook => true), createAssistCustomer()],
   update: [],
   patch: [],
   remove: [],
