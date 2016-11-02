@@ -18,6 +18,6 @@ expect -c "
    spawn sudo ssh -i "acklenavenue.pem" centos@ec2-54-162-255-166.compute-1.amazonaws.com
    expect Are you sure you want to continue connecting (yes/no)? { send yes\n }
 "
-pwd
+ls -a
 exit
 buildkite-agent artifact upload "*.zip"
