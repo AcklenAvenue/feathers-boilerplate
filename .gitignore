@@ -38,3 +38,5 @@ bk-*.log
 
 #npm logs
 npm-debug.log.*
+
+*.pem
