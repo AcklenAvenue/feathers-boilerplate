@@ -8,7 +8,7 @@ echo "--- Deploy to $BUILDKITE_BRANCH"
 #gulp deploy | tee -a bk-pipeline.log
 gulp zip-app
 cd zip
-cp ~/acklenavenue.pem acklenavenue.pem
+sudo cp ~/acklenavenue.pem acklenavenue.pem
 #chmod 400 acklenavenue.pem
 pwd
 ls -a
