@@ -1,5 +1,5 @@
 {
-  "host": "indigo-backend-dev.us-east-1.elasticbeanstalk.com",
+  "host": "indigo-backend-dev.acklenavenueclient.com",
   "port": 3030,
   "mysql": "mysql://admin:admin123@indigo-mysql-dev.c0xjitcfqke4.us-east-1.rds.amazonaws.com:3306/indigo_mysql_dev",
   "public": "../public/",

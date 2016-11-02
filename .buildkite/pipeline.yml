@@ -17,7 +17,7 @@ steps:
 
   - name: ':rocket: Deploy'
     command: '/.buildkite/deploy.sh'
-    branches: 'develop staging master'
+    branches: 'develop staging master new-backend-deploy'
     agents:
       node: 'true'
       backend: 'true'
