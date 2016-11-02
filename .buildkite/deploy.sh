@@ -10,5 +10,5 @@ gulp zip-app
 cd zip
 sudo cp ~/acklenavenue.pem acklenavenue.pem
 sudo chmod 400 acklenavenue.pem
-yes "yes" | scp -i "acklenavenue.pem" indigo-backend-develop.zip centos@ec2-54-162-255-166.compute-1.amazonaws.com:/home/centos/
+scp -i "acklenavenue.pem" -B indigo-backend-develop.zip centos@ec2-54-162-255-166.compute-1.amazonaws.com:/home/centos/
 #buildkite-agent artifact upload "*.zip"
