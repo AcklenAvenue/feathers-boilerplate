@@ -13,6 +13,6 @@ expect -c "
    spawn sudo scp -i "acklenavenue.pem" indigo-backend-$ENVIRONMENT.zip centos@indigo-backend-dev.acklenavenueclient.com:/home/centos/
    expect yes/no { send yes\r ; exp_continue }
 "
-sudo ssh -i "acklenavenue.pem" centos@indigo-backend-dev.acklenavenueclient.com 'unzip -o indigo-backend-$ENVIRONMENT.zip -d /home/centos/builds'
+sudo ssh -i "acklenavenue.pem" centos@indigo-backend-dev.acklenavenueclient.com "unzip -o indigo-backend-$ENVIRONMENT.zip -d /home/centos/builds"
 sudo ssh -i "acklenavenue.pem" centos@indigo-backend-dev.acklenavenueclient.com 'npm install /home/centos/builds'
 buildkite-agent artifact upload "*.zip"
