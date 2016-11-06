@@ -10,9 +10,9 @@ cd zip
 sudo cp ~/acklenavenue.pem acklenavenue.pem
 sudo chmod 400 acklenavenue.pem
 expect -c "
-   spawn sudo scp -i "acklenavenue.pem" indigo-backend-$ENVIRONMENT.zip centos@ec2-54-162-255-166.compute-1.amazonaws.com:/home/centos/
+   spawn sudo scp -i "acklenavenue.pem" indigo-backend-$ENVIRONMENT.zip centos@indigo-backend-dev.acklenavenueclient.com:/home/centos/
    expect Are you sure you want to continue connecting (yes/no)? { send yes\n }
 "
-sudo ssh -i "acklenavenue.pem" centos@ec2-54-162-255-166.compute-1.amazonaws.com 'unzip -o indigo-backend-$ENVIRONMENT.zip -d /home/centos/builds'
-sudo ssh -i "acklenavenue.pem" centos@ec2-54-162-255-166.compute-1.amazonaws.com 'npm install /home/centos/builds'
+sudo ssh -i "acklenavenue.pem" indigo-backend-dev.acklenavenueclient.com 'unzip -o indigo-backend-$ENVIRONMENT.zip -d /home/centos/builds'
+sudo ssh -i "acklenavenue.pem" indigo-backend-dev.acklenavenueclient.com 'npm install /home/centos/builds'
 buildkite-agent artifact upload "*.zip"
