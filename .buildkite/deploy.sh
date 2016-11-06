@@ -14,5 +14,5 @@ expect -c "
    expect yes/no { send yes\r ; exp_continue }
 "
 sudo ssh -i "acklenavenue.pem" centos@indigo-backend-dev.acklenavenueclient.com "unzip -o indigo-backend-$ENVIRONMENT.zip -d /home/centos/builds"
-sudo ssh -i "acklenavenue.pem" centos@indigo-backend-dev.acklenavenueclient.com 'npm install /home/centos/builds'
+sudo ssh -i "acklenavenue.pem" centos@indigo-backend-dev.acklenavenueclient.com 'cd builds && npm install'
 buildkite-agent artifact upload "*.zip"
