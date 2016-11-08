@@ -1,4 +1,5 @@
 
+const payeezy = require('./payeezy');
 const assistProduct = require('./assistProduct');
 const product = require('./product');
 const assistCustomer = require('./assistCustomer');
@@ -21,4 +22,5 @@ module.exports = function () {
   app.configure(assistCustomer);
   app.configure(product);
   app.configure(assistProduct);
+  app.configure(payeezy);
 };
