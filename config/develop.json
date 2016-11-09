@@ -32,5 +32,13 @@
     "library": "",
     "database": "",
     "companyNumber": ""
+  },
+  "payments": {
+    "url": "",
+    "apiKey": "",
+    "paymentToken": "",
+    "hmacKey": "",
+    "tokenType": "",
+    "merchantReference": ""
   }
 }
