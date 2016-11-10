@@ -1,4 +1,5 @@
 
+const order = require('./order');
 const assistOrder = require('./assistOrder');
 const payeezy = require('./payeezy');
 const assistProduct = require('./assistProduct');
@@ -25,4 +26,13 @@ module.exports = function () {
   app.configure(assistProduct);
   app.configure(payeezy);
   app.configure(assistOrder);
+  app.configure(order);
+
+  Object.keys(sequelize.models).forEach((modelName) => {
+    if ('associate' in sequelize.models[modelName]) {
+      sequelize.models[modelName].associate();
+    }
+  });
+
+  sequelize.sync();
 };
