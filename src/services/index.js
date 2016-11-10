@@ -1,4 +1,5 @@
 
+const assistOrder = require('./assistOrder');
 const payeezy = require('./payeezy');
 const assistProduct = require('./assistProduct');
 const product = require('./product');
@@ -23,4 +24,5 @@ module.exports = function () {
   app.configure(product);
   app.configure(assistProduct);
   app.configure(payeezy);
+  app.configure(assistOrder);
 };
