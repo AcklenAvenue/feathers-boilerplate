@@ -21,7 +21,7 @@ class Service {
   }
 
   create(data, params) {
-    return new Promise((resolve, reject) => {
+    // return new Promise((resolve, reject) => {
       console.log(data);
       const thisOptions = this.options;
       try {
@@ -46,17 +46,19 @@ class Service {
                 connDB2.close(function () {
                     console.log('done');
                 });
-                resolve("done");
+                // resolve("done");
               }
               catch (err) {
-                reject(err);
+                console.log(err);
+                // reject(err);
               }
           });
       }
       catch (err) {
-        reject(err);
+        console.log(err);
+        // reject(err);
       }
-    });
+    // });
 
   }
 

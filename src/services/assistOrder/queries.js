@@ -161,20 +161,21 @@ class OrderQueries {
     this.library = lib;
     this.companyNumber = companyNo;
     this.merchantCode = merchant;
-    const headerQuery = this.getHeaderInsert(orderInfo.orderNumber, orderInfo.customerNumber,
+    const headerQuery = this.getHeaderInsert(orderInfo.id, orderInfo.customerNumber,
       orderInfo.orderNumberFromAS, orderInfo.currencyCode, orderInfo.orderAmount,
       orderInfo.tax, orderInfo.clientName, userEmail).toString();
     const detailQueries = orderInfo.orderDetails.map(detail =>
-      this.getOrderDetail(orderInfo.orderNumber, detail.sequence,
+      this.getOrderDetail(orderInfo.id, detail.sequence,
         detail.offerId, detail.keyCode, orderInfo.customerNumber, detail.productCode,
         detail.unitOfMeasure, detail.productQuantity, detail.productValue,
         orderInfo.currencyCode, userEmail).toString()
     );
-    const paymentQuery = this.getOrderPayment(orderInfo.orderNumber, orderInfo.paymentType,
-      orderInfo.paymentNumber, orderInfo.paymentAmount, orderInfo.expirationDate,
-      orderInfo.authorizationCode, orderInfo.authorizationCodeLength, orderInfo.authorizationDate,
-      orderInfo.creditCardCVV).toString();
-    const sfaction = this.notifyOrderIsReady(orderInfo.orderNumber, moment().format('YYYYMMDD'),
+    const paymentQuery = this.getOrderPayment(orderInfo.id, orderInfo.orderPayment.paymentType,
+      orderInfo.orderPayment.paymentNumber, orderInfo.orderPayment.paymentAmount,
+      orderInfo.orderPayment.expirationDate, orderInfo.orderPayment.authorizationCode,
+      orderInfo.orderPayment.authorizationCodeLength, orderInfo.orderPayment.authorizationDate,
+      orderInfo.orderPayment.creditCardCVV).toString();
+    const sfaction = this.notifyOrderIsReady(orderInfo.id, moment().format('YYYYMMDD'),
       moment().format('HHmmss')).toString();
     return [headerQuery].concat(detailQueries, paymentQuery, sfaction);
   }
