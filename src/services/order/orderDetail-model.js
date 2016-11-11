@@ -43,9 +43,15 @@ module.exports = (sequelize) => {
     },
   }, {
     freezeTableName: true,
+    classMethods: {
+      associate(models) {
+        // order.hasOne(sequelize.models.orderPayments);
+        this.belongsTo(models.orders, { as: 'order' });
+      },
+    },
   });
 
-  orderDetail.belongsTo(sequelize.models.products);
+  // orderDetail.belongsTo(sequelize.models.products);
   orderDetail.sync();
 
   return orderDetail;

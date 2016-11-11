@@ -23,7 +23,7 @@ exports.after = {
   all: [],
   find: [],
   get: [],
-  create: [createAssistOrder()],
+  create: [],
   update: [],
   patch: [],
   remove: [],

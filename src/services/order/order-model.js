@@ -37,14 +37,11 @@ module.exports = (sequelize) => {
     freezeTableName: true,
     initialAutoIncrement: '1000100',
     classMethods: {
-      associate() {
-        order.hasOne(sequelize.models.orderPayments);
-        order.hasMany(sequelize.models.orderDetails);
+      associate(models) {
+        // order.hasOne(sequelize.models.orderPayments);
+        this.hasMany(models.orderDetails);
       },
     },
-    // include: [
-    //   sequelize.models.orderPayments,
-    // ],
   });
 
   order.sync();

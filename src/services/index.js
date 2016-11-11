@@ -28,11 +28,11 @@ module.exports = function () {
   app.configure(assistOrder);
   app.configure(order);
 
-  Object.keys(sequelize.models).forEach((modelName) => {
-    if ('associate' in sequelize.models[modelName]) {
-      sequelize.models[modelName].associate();
-    }
-  });
+  const models = sequelize.models;
+  Object.keys(models)
+    .map(name => models[name])
+    .filter(model => model.associate)
+    .forEach(model => model.associate(models));
 
   sequelize.sync();
 };

@@ -10,7 +10,9 @@ const defaults = {};
 module.exports = function (options) {
   options = Object.assign({}, defaults, options);
   return function (hook) {
-    console.log(hook);
+    hook.params.sequelize = {
+      include: [{ model: hook.app.get('sequelize').models.orderDetails }]
+    }
     //const assistOrderService = hook.app.service('/assistOrders');
 
     /*const assistOrder = {
