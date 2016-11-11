@@ -26,6 +26,7 @@ module.exports = function (options) {
       } else {
         const productToUpdate = localProduct.data[0].dataValues;
         productService.update(productToUpdate.id, hook.result);
+        hook.result.id = productToUpdate.id;
       }
     });
   };
