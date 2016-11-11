@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
     initialAutoIncrement: '1000100',
     classMethods: {
       associate(models) {
-        // order.hasOne(sequelize.models.orderPayments);
+        this.hasOne(models.orderPayments);
         this.hasMany(models.orderDetails);
       },
     },
