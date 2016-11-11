@@ -20,9 +20,8 @@ class Service {
     });
   }
 
-  create(data, params) {
-    // return new Promise((resolve, reject) => {
-      console.log(data);
+  getNewAssistOrderNumber() {
+    return new Promise((resolve, reject) => {
       const thisOptions = this.options;
       try {
         ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
@@ -33,15 +32,35 @@ class Service {
                 const rowsOrderAssist = connDB2.querySync('select ASTPROOF2.GetOrderNumber(cast(\'' + thisOptions.companyNumber + '\' as char(3))) as NewOrderNumber from SYSIBM.SYSDUMMY1');
                 console.log(rowsOrderAssist);
                 const newOrderAssist = rowsOrderAssist[0].NEWORDERNUMBER;
-                data.order.orderNumberFromAS = newOrderAssist;
+                resolve(newOrderAssist);
+              }
+              catch (err) {
+                console.log(err);
+                reject(err);
+              }
+          });
+      }
+      catch(err) {
+        console.log(err);
+        reject(err);
+      }
+    });
+  }
 
+  create(data, params) {
+    // return new Promise((resolve, reject) => {
+      const thisOptions = this.options;
+      try {
+        ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
+          function (errDB2, connDB2) {
+              if (errDB2) return console.log(errDB2);
+
+              try {
                 const orderQueries = new orderQuery();
                 const queries = orderQueries.getOrderInsertQueries(thisOptions.library, thisOptions.companyNumber, thisOptions.merchantCode, data.order, data.user.email);
 
                 queries.forEach((query) => {
-                  console.log(query);
                   const response = connDB2.querySync(query);
-                  console.log(response);
                 });
                 connDB2.close(function () {
                     console.log('done');

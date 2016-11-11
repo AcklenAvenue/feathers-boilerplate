@@ -5,6 +5,7 @@ const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 const createAssistOrder = require('./createAssistOrder');
 const includeDetailModels = require('./includeDetailModels');
+const generateNewAssistOrderNumber = require('./generateNewAssistOrderNumber');
 
 exports.before = {
   all: [
@@ -14,7 +15,7 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [includeDetailModels()],
+  create: [generateNewAssistOrderNumber(), includeDetailModels()],
   update: [],
   patch: [],
   remove: [],
