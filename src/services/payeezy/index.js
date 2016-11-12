@@ -75,6 +75,7 @@ class Service {
     return new Promise((resolve, reject) => {
       rp(options)
       .then((body) => {
+        console.log(body);
         resolve({
           correlation_id: body.correlation_id,
           transaction_status: body.transaction_status,
