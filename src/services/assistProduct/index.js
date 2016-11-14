@@ -15,7 +15,6 @@ class Service {
 
   get(id, params) {
     const thisOptions = this.options;
-    console.log(id);
     return new Promise((resolve, reject) => {
       ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
         function (errDB2, connDB2) {
