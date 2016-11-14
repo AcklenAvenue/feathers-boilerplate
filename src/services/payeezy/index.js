@@ -86,7 +86,7 @@ class Service {
           bank_message: body.bank_message,
           gateway_resp_code: body.gateway_resp_code,
           gateway_message: body.gateway_message,
-          cvv2: body.cvv2,
+          cvv2: body.cvv2 || '',
         });
       })
       .catch((err) => {
