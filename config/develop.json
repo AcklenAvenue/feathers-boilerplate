@@ -1,12 +1,12 @@
 {
-  "host": "indigo-backend-app.feathersjs.com",
-  "port": 80,
-  "mysql": "DATABASE_URL",
+  "host": "indigo-backend-dev.acklenavenueclient.com",
+  "port": 3030,
+  "mysql": "mysql://admin:admin123@indigo-mysql-dev.c0xjitcfqke4.us-east-1.rds.amazonaws.com:3306/indigo_mysql_dev",
   "public": "../public/",
   "auth": {
     "idField": "id",
     "token": {
-      "secret": "FEATHERS_AUTH_SECRET"
+      "secret": "wSzT/XLoMCO2JZvDQohu9iusdSG1nSPYukn4j3Ls02kd7dJJrQETDcagvRclQON9XgPBdPvCd5zpshINr2EdIQ=="
     },
     "local": {},
     "facebook": {
@@ -32,5 +32,13 @@
     "library": "",
     "database": "",
     "companyNumber": ""
+  },
+  "payments": {
+    "url": "",
+    "apiKey": "",
+    "paymentToken": "",
+    "hmacKey": "",
+    "tokenType": "",
+    "merchantReference": ""
   }
 }

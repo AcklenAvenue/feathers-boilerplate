@@ -10,10 +10,11 @@ gulp.task('zip-app', () => {
       './.ebextensions/**/*.*'
       ,'package.json'
       ,'gulpfile.js'
-      ,'./task/**/*.*'
+      ,'./tasks/**/*.*'
       ,'tsconfig.json'
       ,'./config/**/*.*'
       ,'./public/**/*.*'
+      ,'default.json.default'
 
     ], {
       base: './'
@@ -27,10 +28,11 @@ gulp.task('prepare-deployment', () => {
 			'./dist/**/*.*',
       ,'package.json'
       ,'gulpfile.js'
-      ,'./task/**/*.*'
+      ,'./tasks/**/*.*'
       ,'tsconfig.json'
       ,'./config/**/*.*'
       ,'./public/**/*.*'
+      ,'default.json.default'
     ], {
       base: './'
     })

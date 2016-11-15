@@ -26,7 +26,7 @@ class Service {
         function (errDB2, connDB2) {
             if (errDB2) return console.log(errDB2);
 
-            var rowsAssistCustomer = connDB2.querySync('select ASTPROOF2.GetProspectNumber() as NewCustomerNumber from SYSIBM.SYSDUMMY1');
+            var rowsAssistCustomer = connDB2.querySync('select ASTPROOF2.GetProspectNumber(cast(\'' + thisOptions.companyNumber + '\' as char(3))) as NewCustomerNumber from SYSIBM.SYSDUMMY1');
             console.log(rowsAssistCustomer);
             var newAssistsCustomerNumber = rowsAssistCustomer[0].NEWCUSTOMERNUMBER;
             const customerInfo = {

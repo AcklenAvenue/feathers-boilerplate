@@ -1,4 +1,9 @@
 
+const order = require('./order');
+const assistOrder = require('./assistOrder');
+const payeezy = require('./payeezy');
+const assistProduct = require('./assistProduct');
+const product = require('./product');
 const assistCustomer = require('./assistCustomer');
 const customer = require('./customer');
 const authentication = require('./authentication');
@@ -17,4 +22,17 @@ module.exports = function () {
   app.configure(user);
   app.configure(customer);
   app.configure(assistCustomer);
+  app.configure(product);
+  app.configure(assistProduct);
+  app.configure(payeezy);
+  app.configure(assistOrder);
+  app.configure(order);
+
+  const models = sequelize.models;
+  Object.keys(models)
+    .map(name => models[name])
+    .filter(model => model.associate)
+    .forEach(model => model.associate(models));
+
+  sequelize.sync();
 };

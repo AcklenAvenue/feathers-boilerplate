@@ -8,6 +8,7 @@ nvm use default
 echo "--- Install Dependencies"
 npm install
 echo "--- Build"
-gulp copy-default-json
+gulp config-replace-secrets
 gulp clean-dist
 gulp compile
+gulp zip-app

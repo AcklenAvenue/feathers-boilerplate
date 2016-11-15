@@ -1,7 +1,7 @@
 {
-  "host": "indigo-backend-dev.us-east-1.elasticbeanstalk.com",
+  "host": "localhost",
   "port": 3030,
-  "mysql": "mysql://admin:admin123@indigo-mysql-dev.c0xjitcfqke4.us-east-1.rds.amazonaws.com:3306/indigo_mysql_dev",
+  "mysql": "mysql://pma:n0tD3f%40ult@viatestwebdb01:3306/InqCarttest01",
   "public": "../public/",
   "auth": {
     "idField": "id",
@@ -25,12 +25,20 @@
     }
   },
   "AS400": {
-    "host": "",
-    "user": "",
-    "password": "",
-    "port": 0,
-    "library": "",
-    "database": "",
-    "companyNumber": ""
+    "host": "$AS400HOST",
+    "user": "$AS400USER",
+    "password": "$AS400PASSWORD",
+    "port": $AS400PORT,
+    "library": "$AS4000LIBRARY",
+    "database": "$AS400DATABASE",
+    "companyNumber": "$AS400CN"
+  },
+  "payments": {
+    "url": "",
+    "apiKey": "",
+    "paymentToken": "",
+    "hmacKey": "",
+    "tokenType": "",
+    "merchantReference": ""
   }
 }

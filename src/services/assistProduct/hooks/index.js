@@ -3,10 +3,14 @@
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
-const createAssistCustomer = require('./createAssistCustomer');
+const updateProductInformation = require('./updateProductInformation');
 
 exports.before = {
-  all: [],
+  all: [
+    /* auth.verifyToken(),
+    auth.populateUser(),
+    auth.restrictToAuthenticated(),*/
+  ],
   find: [],
   get: [],
   create: [],
@@ -18,9 +22,8 @@ exports.before = {
 exports.after = {
   all: [],
   find: [],
-  get: [],
-  create: [hooks.populate('user', { field: 'userId', service: '/users' }),
-    hooks.remove('user.password', 'user.facebookId', 'user.googleId', hook => true), createAssistCustomer()],
+  get: [updateProductInformation()],
+  create: [],
   update: [],
   patch: [],
   remove: [],

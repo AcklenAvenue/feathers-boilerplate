@@ -6,6 +6,8 @@ const FacebookTokenStrategy = require('passport-facebook-token');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GoogleTokenStrategy = require('passport-google-token').Strategy;
 
+const hooks = require('./hooks');
+
 module.exports = function () {
   const app = this;
 
@@ -18,4 +20,7 @@ module.exports = function () {
 
   app.set('auth', config);
   app.configure(authentication(config));
+  const authServiceLocal = app.service('/auth/local');
+  authServiceLocal.before(hooks.before);
+  authServiceLocal.after(hooks.after);
 };
