@@ -1,10 +1,14 @@
 const gulp = require('gulp');
 const runSequence = require('run-sequence');
 const scp = require('gulp-scp2');
+const GulpSSH = require('gulp-ssh')
+
 const environment = process.env.ENVIRONMENT || 'dev';
+
 var ENVPASSWORD = "";
 var ENVUSER = "";
 var ENVHOST = "";
+
 if(environment === "dev"){
   ENVPASSWORD = process.env.ENVPASSWORD_DEV;
   ENVUSER = process.env.ENVUSER_DEV;
@@ -21,7 +25,29 @@ if(environment === "production"){
   ENVHOST = process.env.ENVHOST_PROD;
 }
 
-gulp.task('deploy', function() {
+var config = {
+  host: ENVHOST,
+  port: 22,
+  username: ENVUSER,
+  password: ENVPASSWORD
+}
+
+var gulpSSH = new GulpSSH({
+  ignoreErrors: false,
+  sshConfig: config
+})
+
+gulp.task('deploy', (callback) => {
+  if(environment === "dev"){
+    return runSequence(
+  		'scp-dev', 'unzip-dev', 'install-dev',
+  		callback
+  	);
+  }
+
+});
+
+gulp.task('scp-dev', function() {
     return gulp.src('zip/*.zip')
       .pipe(scp({
         host: ENVHOST,
@@ -38,3 +64,22 @@ gulp.task('deploy', function() {
         console.log(err);
       });
 });
+
+
+gulp.task('unzip-dev', function () {
+  return gulpSSH
+    .exec(['unzip -o indigo-backend-$ENVIRONMENT.zip -d /home/centos/builds'], {filePath: 'commands.log'})
+    .pipe(gulp.dest('logs'))
+    .on('error', function(err) {
+      console.log(err);
+    });
+})
+
+gulp.task('install-dev', function () {
+  return gulpSSH
+    .exec(['cd builds','npm install'], {filePath: 'commands.log'})
+    .pipe(gulp.dest('logs'))
+    .on('error', function(err) {
+      console.log(err);
+    });
+})
