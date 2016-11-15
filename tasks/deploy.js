@@ -4,7 +4,6 @@ const scp = require('gulp-scp2');
 const environment = process.env.ENVIRONMENT || 'dev';
 
 gulp.task('deploy', function() {
-  if (environment === 'dev') {
     return gulp.src('indigo-backend-' + environment + '.zip')
       .pipe(scp({
         host: 'indigo-backend-dev.acklenavenueclient.com',
@@ -20,5 +19,4 @@ gulp.task('deploy', function() {
       .on('error', function(err) {
         console.log(err);
       });
-  }
 });
