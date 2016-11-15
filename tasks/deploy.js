@@ -4,16 +4,21 @@ const scp = require('gulp-scp2');
 const environment = process.env.ENVIRONMENT || 'dev';
 
 gulp.task('deploy', function() {
-  if(environment === 'dev'){
-    return gulp.src('indigo-backend-'+environment+'.zip')
-    .pipe(scp({
-      host: 'indigo-backend-dev.acklenavenueclient.com',
-      username: 'centos',
-      privateKey: 'acklenavenue.pem',
-      dest: '/home/centos/'
-    }))
-    .on('error', function(err) {
-      console.log(err);
-    });
+  if (environment === 'dev') {
+    return gulp.src('indigo-backend-' + environment + '.zip')
+      .pipe(scp({
+        host: 'indigo-backend-dev.acklenavenueclient.com',
+        username: 'centos',
+        privateKey: 'acklenavenue.pem',
+        dest: '/home/centos/',
+        watch: function(client) {
+          client.on('write', function(o) {
+            console.log('write %s', o.destination);
+          });
+        }
+      }))
+      .on('error', function(err) {
+        console.log(err);
+      });
   }
 });
