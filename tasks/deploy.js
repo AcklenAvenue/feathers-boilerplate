@@ -68,7 +68,7 @@ gulp.task('scp-dev', function() {
 
 gulp.task('unzip-dev', function () {
   return gulpSSH
-    .exec(['unzip -o indigo-backend-$ENVIRONMENT.zip -d /home/centos/builds'], {filePath: 'commands.log'})
+    .exec(['unzip -o indigo-backend-'+environment+'.zip -d /home/centos/builds'], {filePath: 'commands.log'})
     .pipe(gulp.dest('logs'))
     .on('error', function(err) {
       console.log(err);
