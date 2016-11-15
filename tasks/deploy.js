@@ -77,7 +77,7 @@ gulp.task('unzip-dev', function () {
 
 gulp.task('install-dev', function () {
   return gulpSSH
-    .exec(['cd builds','npm install'], {filePath: 'commands.log'})
+    .exec(['cd builds && npm install'], {filePath: 'commands.log'})
     .pipe(gulp.dest('logs'))
     .on('error', function(err) {
       console.log(err);
