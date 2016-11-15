@@ -110,7 +110,7 @@ gulp.task('install-dev', function () {
 
 gulp.task('install-remote', function () {
   return gulpSSH
-    .shell(['cd /home/acklen/indigo-backend/build', 'npm install', 'pm2 restart all'], {filePath: 'shell.log'})
+    .shell(['cd /home/acklen/indigo-backend/build', 'npm install', 'pm2 restart all','pm2 show indigo-backend'], {filePath: 'shell.log'})
     .pipe(gulp.dest('logs'))
     .on('error', function(err) {
       console.log(err);
