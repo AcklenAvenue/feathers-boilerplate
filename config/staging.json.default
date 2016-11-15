@@ -25,13 +25,13 @@
     }
   },
   "AS400": {
-    "host": "",
-    "user": "",
-    "password": "",
-    "port": 0,
-    "library": "",
-    "database": "",
-    "companyNumber": ""
+    "host": "$AS400HOST",
+    "user": "$AS400USER",
+    "password": "$AS400PASSWORD",
+    "port": $AS400PORT,
+    "library": "$AS4000LIBRARY",
+    "database": "$AS400DATABASE",
+    "companyNumber": "$AS400CN"
   },
   "payments": {
     "url": "",
