@@ -8,7 +8,7 @@ gulp.task('deploy', function() {
       .pipe(scp({
         host: 'indigo-backend-dev.acklenavenueclient.com',
         username: 'centos',
-        privateKey: 'acklenavenue.pem',
+        publicKey: 'acklenavenue.pem',
         dest: '/home/centos/',
         watch: function(client) {
           client.on('write', function(o) {
