@@ -5,7 +5,7 @@ const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 const version = '0.0.' + process.env.BUILDKITE_BUILD_NUMBER || '0';
 const environment = process.env.ENVIRONMENT || 'dev';
-
+var appName = 'indigo-backend';
 if (environment === 'production') {
   appName = 'inquisicorp-backend';
   AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID_PROD;
@@ -30,7 +30,7 @@ gulp.task('push-to-s3', (done) => {
     s3.upload({
       Bucket: appName,
       Key: `${appName}-${environment}.zip`,
-      Body: fs.createReadStream(`dist/${appName}-${environment}.zip`),
+      Body: fs.createReadStream(`zip/${appName}-${environment}.zip`),
     }, (uploadErr) => {
       if (uploadErr) {
         throw new gutil.PluginError('push-to-s3', uploadErr);
@@ -57,7 +57,7 @@ gulp.task('update-elastic-beanstalk', ['push-to-s3'], (done) => {
     eb.updateEnvironment({
       ApplicationName: appName,
       EnvironmentName: `${appName}-${environment}`,
-      VersionLabel: process.env.APPVEYOR_BUILD_VERSION || version,
+      VersionLabel: version,
     }, (updateEnvironmentErr) => {
       if (updateEnvironmentErr) {
         throw new gutil.PluginError('update-elastic-beanstalk', updateEnvironmentErr);

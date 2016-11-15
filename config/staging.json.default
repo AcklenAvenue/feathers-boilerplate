@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "mysql": "mysql://root:123456789@localhost:3306/IndigoBackend",
+  "mysql": "mysql://admin:admin123@localhost:3306/indigo_staging",
   "public": "../public/",
   "auth": {
     "idField": "id",
@@ -23,5 +23,22 @@
         "scope": ["profile"]
       }
     }
+  },
+  "AS400": {
+    "host": "$AS400HOST",
+    "user": "$AS400USER",
+    "password": "$AS400PASSWORD",
+    "port": $AS400PORT,
+    "library": "$AS4000LIBRARY",
+    "database": "$AS400DATABASE",
+    "companyNumber": "$AS400CN"
+  },
+  "payments": {
+    "url": "",
+    "apiKey": "",
+    "paymentToken": "",
+    "hmacKey": "",
+    "tokenType": "",
+    "merchantReference": ""
   }
 }
