@@ -44,6 +44,12 @@ gulp.task('deploy', (callback) => {
   		callback
   	);
   }
+  if(environment === "staging"){
+    return runSequence(
+  		'prepare-deployment','scp-remote','install-remote',
+  		callback
+  	);
+  }
 
 });
 
@@ -54,6 +60,24 @@ gulp.task('scp-dev', function() {
         username: ENVUSER,
         password: ENVPASSWORD,
         dest: '/home/centos/',
+        watch: function(client) {
+          client.on('write', function(o) {
+            console.log('write %s', o.destination);
+          });
+        }
+      }))
+      .on('error', function(err) {
+        console.log(err);
+      });
+});
+
+gulp.task('scp-remote', function() {
+    return gulp.src('./build/**/*.*')
+      .pipe(scp({
+        host: ENVHOST,
+        username: ENVUSER,
+        password: ENVPASSWORD,
+        dest: '/home/acklen/indigo-backend',
         watch: function(client) {
           client.on('write', function(o) {
             console.log('write %s', o.destination);
@@ -78,6 +102,15 @@ gulp.task('unzip-dev', function () {
 gulp.task('install-dev', function () {
   return gulpSSH
     .shell(['cd builds', 'npm install', 'pm2 restart all'], {filePath: 'shell.log'})
+    .pipe(gulp.dest('logs'))
+    .on('error', function(err) {
+      console.log(err);
+    });
+})
+
+gulp.task('install-remote', function () {
+  return gulpSSH
+    .shell(['cd /home/acklen/indigo-backend/build', 'npm install', 'pm2 restart all'], {filePath: 'shell.log'})
     .pipe(gulp.dest('logs'))
     .on('error', function(err) {
       console.log(err);
