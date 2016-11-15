@@ -77,7 +77,7 @@ gulp.task('scp-remote', function() {
         host: ENVHOST,
         username: ENVUSER,
         password: ENVPASSWORD,
-        dest: '/home/acklen/indigo-backend',
+        dest: '/home/acklen/indigo-backend/build',
         watch: function(client) {
           client.on('write', function(o) {
             console.log('write %s', o.destination);
