@@ -38,7 +38,7 @@
     "apiKey": "$PAYAPIKEY",
     "paymentToken": "$PAYTOKEN",
     "hmacKey": "$PAYHMAC",
-    "tokenType": "$PAYTOKENTYPE",
+    "tokenType": "$PAYTTYPE",
     "merchantReference": "$PAYMERCHANT"
   }
 }
