@@ -24,8 +24,8 @@ class Service {
             }
 
             const query = 'select IAPRT# as assistCode, IA101 as name, IA103 as description from astdta.ICPRTMIA  where IACOM# = \'' +
-              thisOptions.companyNumber +'\' and IAPRT# = \'' +
-              id +'\' and IAWEBF = 1';
+              thisOptions.companyNumber +'\' and UPPER(IAPRT#) = UPPER(\'' +
+              id +'\') and IAWEBF = 1';
             var rowsAssistProduct = connDB2.querySync(query);
 
             if (rowsAssistProduct && rowsAssistProduct.length > 0) {
