@@ -34,11 +34,11 @@
     "companyNumber": "$AS400CN"
   },
   "payments": {
-    "url": "",
-    "apiKey": "",
-    "paymentToken": "",
-    "hmacKey": "",
-    "tokenType": "",
-    "merchantReference": ""
+    "url": "$PAYURL",
+    "apiKey": "$PAYAPIKEY",
+    "paymentToken": "$PAYTOKEN",
+    "hmacKey": "$PAYHMAC",
+    "tokenType": "$PAYTOKENTYPE",
+    "merchantReference": "$PAYMERCHANT"
   }
 }
