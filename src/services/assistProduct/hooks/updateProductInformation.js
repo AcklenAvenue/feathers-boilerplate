@@ -12,10 +12,15 @@ const defaults = {};
 module.exports = function (options) {
   options = Object.assign({}, defaults, options);
   return function (hook) {
+    console.log(hook.result);
     const productService = hook
       .app
       .service('/products');
     return new Promise((resolve, reject) => {
+      if (!hook.result.assistCode) {
+        resolve();
+      }
+
       productService
         .find({
         query: {

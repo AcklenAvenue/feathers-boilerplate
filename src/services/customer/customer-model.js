@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
     },
   }, {
     freezeTableName: true,
-    initialAutoIncrement: '1000',
+    initialAutoIncrement: '1000000',
   });
 
   customer.belongsTo(sequelize.models.users);
