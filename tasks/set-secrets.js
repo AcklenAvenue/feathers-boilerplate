@@ -14,7 +14,7 @@ var PAYURL = "";
 var PAYAPIKEY = "";
 var PAYTOKEN = "";
 var PAYHMAC = "";
-var PAYTOKENTYPE = "";
+var PAYTTYPE = "";
 var PAYMERCHANT = "";
 
 if (environment === "dev") {
@@ -29,7 +29,7 @@ if (environment === "dev") {
   PAYAPIKEY = process.env.PAYAPIKEY_DEV;
   PAYTOKEN = process.env.PAYTOKEN_DEV;
   PAYHMAC = process.env.PAYHMAC_DEV;
-  PAYTOKENTYPE = process.env.PAYTOKENTYPE_DEV;
+  PAYTTYPE = process.env.PAYTTYPE_DEV;
   PAYMERCHANT = process.env.PAYMERCHANT_DEV;
 }
 if (environment === "staging") {
@@ -44,7 +44,7 @@ if (environment === "staging") {
   PAYAPIKEY = process.env.PAYAPIKEY_STA;
   PAYTOKEN = process.env.PAYTOKEN_STA;
   PAYHMAC = process.env.PAYHMAC_STA;
-  PAYTOKENTYPE = process.env.PAYTOKENTYPE_STA;
+  PAYTTYPE = process.env.PAYTTYPE_STA;
   PAYMERCHANT = process.env.PAYMERCHANT_STA;
 }
 if (environment === "production") {
@@ -59,7 +59,7 @@ if (environment === "production") {
   PAYAPIKEY = process.env.PAYAPIKEY_PROD;
   PAYTOKEN = process.env.PAYTOKEN_PROD;
   PAYHMAC = process.env.PAYHMAC_PROD;
-  PAYTOKENTYPE = process.env.PAYTOKENTYPE_PROD;
+  PAYTTYPE = process.env.PAYTTYPE_PROD;
   PAYMERCHANT = process.env.PAYMERCHANT_PROD;
 }
 
@@ -77,7 +77,7 @@ gulp.task('config-replace-secrets', function() {
     .pipe(replace('$PAYAPIKEY', PAYAPIKEY))
     .pipe(replace('$PAYTOKEN', PAYTOKEN))
     .pipe(replace('$PAYHMAC', PAYHMAC))
-    .pipe(replace('$PAYTOKENTYPE', PAYTOKENTYPE))
+    .pipe(replace('$PAYTTYPE', PAYTTYPE))
     .pipe(replace('$PAYMERCHANT', PAYMERCHANT))
     .pipe(rename(environment + ".json"))
     .pipe(gulp.dest("./config"));
