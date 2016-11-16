@@ -10,6 +10,12 @@ var AS400PORT = 0;
 var AS4000LIBRARY = "";
 var AS400DATABASE = "";
 var AS400CN = "";
+var PAYURL = "";
+var PAYAPIKEY = "";
+var PAYTOKEN = "";
+var PAYHMAC = "";
+var PAYTOKENTYPE = "";
+var PAYMERCHANT = "";
 
 if (environment === "dev") {
   AS400HOST = process.env.AS400HOST_DEV;
@@ -19,6 +25,12 @@ if (environment === "dev") {
   AS4000LIBRARY = process.env.AS4000LIBRARY_DEV;
   AS400DATABASE = process.env.AS400DATABASE_DEV;
   AS400CN = process.env.AS400CN_DEV;
+  PAYURL = process.env.PAYURL_DEV;
+  PAYAPIKEY = process.env.PAYAPIKEY_DEV;
+  PAYTOKEN = process.env.PAYTOKEN_DEV;
+  PAYHMAC = process.env.PAYHMAC_DEV;
+  PAYTOKENTYPE = process.env.PAYTOKENTYPE_DEV;
+  PAYMERCHANT = process.env.PAYMERCHANT_DEV;
 }
 if (environment === "staging") {
   AS400HOST = process.env.AS400HOST_STA;
@@ -28,6 +40,12 @@ if (environment === "staging") {
   AS4000LIBRARY = process.env.AS4000LIBRARY_STA;
   AS400DATABASE = process.env.AS400DATABASE_STA;
   AS400CN = process.env.AS400CN_STA;
+  PAYURL = process.env.PAYURL_STA;
+  PAYAPIKEY = process.env.PAYAPIKEY_STA;
+  PAYTOKEN = process.env.PAYTOKEN_STA;
+  PAYHMAC = process.env.PAYHMAC_STA;
+  PAYTOKENTYPE = process.env.PAYTOKENTYPE_STA;
+  PAYMERCHANT = process.env.PAYMERCHANT_STA;
 }
 if (environment === "production") {
   AS400HOST = process.env.AS400HOST_PROD;
@@ -37,6 +55,12 @@ if (environment === "production") {
   AS4000LIBRARY = process.env.AS4000LIBRARY_PROD;
   AS400DATABASE = process.env.AS400DATABASE_PROD;
   AS400CN = process.env.AS400CN_PROD;
+  PAYURL = process.env.PAYURL_PROD;
+  PAYAPIKEY = process.env.PAYAPIKEY_PROD;
+  PAYTOKEN = process.env.PAYTOKEN_PROD;
+  PAYHMAC = process.env.PAYHMAC_PROD;
+  PAYTOKENTYPE = process.env.PAYTOKENTYPE_PROD;
+  PAYMERCHANT = process.env.PAYMERCHANT_PROD;
 }
 
 gulp.task('config-replace-secrets', function() {
@@ -49,6 +73,12 @@ gulp.task('config-replace-secrets', function() {
     .pipe(replace('$AS4000LIBRARY', AS4000LIBRARY))
     .pipe(replace('$AS400DATABASE', AS400DATABASE))
     .pipe(replace('$AS400CN', AS400CN))
+    .pipe(replace('$PAYURL', PAYURL))
+    .pipe(replace('$PAYAPIKEY', PAYAPIKEY))
+    .pipe(replace('$PAYTOKEN', PAYTOKEN))
+    .pipe(replace('$PAYHMAC', PAYHMAC))
+    .pipe(replace('$PAYTOKENTYPE', PAYTOKENTYPE))
+    .pipe(replace('$PAYMERCHANT', PAYMERCHANT))
     .pipe(rename(environment + ".json"))
     .pipe(gulp.dest("./config"));
 });
