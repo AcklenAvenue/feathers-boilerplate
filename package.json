@@ -41,6 +41,7 @@
     "feathers-socketio": "^1.4.1",
     "gulp-rename": "^1.2.2",
     "ibm_db": "^1.0.0",
+    "lodash": "^4.17.2",
     "moment": "^2.15.1",
     "mysql": "^2.11.1",
     "passport": "^0.3.2",

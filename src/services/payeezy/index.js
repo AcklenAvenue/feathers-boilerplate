@@ -1,6 +1,7 @@
 const hooks = require('./hooks');
 const CryptoJS = require('crypto-js');
 const rp = require('request-promise');
+const _ = require('lodash');
 
 class Service {
   constructor(options) {
@@ -75,18 +76,36 @@ class Service {
     return new Promise((resolve, reject) => {
       rp(options)
       .then((body) => {
-        resolve({
-          correlation_id: body.correlation_id,
-          transaction_status: body.transaction_status,
-          validation_status: body.validation_status,
-          transaction_id: body.transaction_id,
-          transaction_tag: body.transaction_tag,
-          bank_resp_code: body.bank_resp_code,
-          bank_message: body.bank_message,
-          gateway_resp_code: body.gateway_resp_code,
-          gateway_message: body.gateway_message,
-          cvv2: body.cvv2 || '',
-        });
+        if (_.conformsTo(body, {
+          transaction_status: status => status === 'approved',
+        })) {
+          resolve({
+            correlation_id: body.correlation_id,
+            transaction_status: body.transaction_status,
+            validation_status: body.validation_status,
+            transaction_id: body.transaction_id,
+            transaction_tag: body.transaction_tag,
+            bank_resp_code: body.bank_resp_code,
+            bank_message: body.bank_message,
+            gateway_resp_code: body.gateway_resp_code,
+            gateway_message: body.gateway_message,
+            cvv2: body.cvv2 || '',
+          });
+        } else {
+          const returnedError = new Error();
+          returnedError.message = 'Error requesting payment authorization from payeezy.';
+          returnedError.errors = body;
+          returnedError.errors.Error = {
+            messages: [
+              {
+                code: '',
+                description: `Gateway response: ${body.gateway_message}. Bank response: ${body.bank_message}`,
+              },
+            ],
+          };
+          console.log(body);
+          reject(returnedError);
+        }
       })
       .catch((err) => {
         const errMessage = err.message.substring(err.message.indexOf('{'));
