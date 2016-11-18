@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "mysql": "mysql://admin:admin123@localhost:3306/indigo_staging",
+  "mysql": "mysql://pma:n0tD3f%40ult@viatestwebdb01:3306/InqCarttest01",
   "public": "../public/",
   "auth": {
     "idField": "id",
