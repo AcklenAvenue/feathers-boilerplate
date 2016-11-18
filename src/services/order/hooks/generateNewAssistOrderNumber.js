@@ -11,10 +11,10 @@ module.exports = function (options) {
   options = Object.assign({}, defaults, options);
   return function (hook) {
     const assistOrderService = hook.app.service('/assistOrders');
-    assistOrderService.getNewAssistOrderNumber()
+    hook.generateNewAssistOrderNumber = true;
+    return assistOrderService.getNewAssistOrderNumber()
       .then((newOrderNumber) => {
         hook.data.orderNumberFromAS = newOrderNumber;
       });
-    hook.generateNewAssistOrderNumber = true;
   };
 };

@@ -6,6 +6,9 @@
 
 const Sequelize = require('sequelize');
 
+// This must be set bigger than last customer Id from previous system
+const startId = Math.floor(Math.random() * 1000000) + 2000000;
+
 module.exports = (sequelize) => {
   const customer = sequelize.define('customers', {
     firstName: {
@@ -27,7 +30,7 @@ module.exports = (sequelize) => {
     },
   }, {
     freezeTableName: true,
-    initialAutoIncrement: '1000000',
+    initialAutoIncrement: startId,
   });
 
   customer.belongsTo(sequelize.models.users);
