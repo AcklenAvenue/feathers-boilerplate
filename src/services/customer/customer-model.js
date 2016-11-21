@@ -19,10 +19,6 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    billingAddress: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
     userId: {
       required: true,
       type: Sequelize.INTEGER,
@@ -31,9 +27,13 @@ module.exports = (sequelize) => {
   }, {
     freezeTableName: true,
     initialAutoIncrement: startId,
+    classMethods: {
+      associate(models) {
+        this.belongsTo(models.users);
+        this.hasMany(models.customerAddresses);
+      },
+    },
   });
-
-  customer.belongsTo(sequelize.models.users);
 
   customer.sync();
 
