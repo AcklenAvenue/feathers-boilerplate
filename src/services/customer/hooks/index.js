@@ -5,12 +5,13 @@ const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 const createAssistCustomer = require('./createAssistCustomer');
 const includeDetailModels = require('./includeDetailModels');
+const generateNewAssistCustomerNumber = require('./generateNewAssistCustomerNumber');
 
 exports.before = {
   all: [includeDetailModels()],
   find: [],
   get: [],
-  create: [],
+  create: [generateNewAssistCustomerNumber()],
   update: [],
   patch: [],
   remove: [],

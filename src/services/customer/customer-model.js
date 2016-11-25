@@ -19,6 +19,10 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    customerNumberFromAS: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     userId: {
       required: true,
       type: Sequelize.INTEGER,

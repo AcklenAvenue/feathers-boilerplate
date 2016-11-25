@@ -43,7 +43,7 @@ class CustomerQueries {
   }
 
   getCustomerAddressInsert(webCartCustomerNumber, addressSequence,
-    customerName, addressLine1, addressLine2, addressLine3, city, state, zipCode,
+    customerName, addressLine1, addressLine2, addressLine3, city, stateCode, zipCode,
     countryCode, email1, email2, userEmail) {
     const insertOrderDetail = squel.insert().into(this.getTable('T_ADDRESS'))
           .setFields(
@@ -58,7 +58,7 @@ class CustomerQueries {
         ADDR_LINE3: addressLine3,
         ADDR_CTY_D: city,
         ADDR_LDESC: '',
-        ADDR_LOCCD: state,
+        ADDR_LOCCD: stateCode,
         ADDR_LCCCD: '',
         ADDR_PSTCD: zipCode,
         ADDR_CNTCD: countryCode,
@@ -107,13 +107,29 @@ class CustomerQueries {
     this.companyNumber = companyNo;
     const header = this.getCustomerHeaderInsert(customerInfo.inquisicartCustomerNumber,
       customerInfo.companyName, customerInfo.sicCode, customerInfo.taxId,
-      customerInfo.assistCustomerNumber, userEmail);
-    const address = this.getCustomerAddressInsert(customerInfo.inquisicartCustomerNumber, '0', customerInfo.companyName, customerInfo.billingAddress,
-      '', '', '', '', '', '', customerInfo.email,
-      '', userEmail);
+      customerInfo.customerNumberFromAS, userEmail);
+
+    const addresses = [];
+    if (customerInfo.customerAddresses && customerInfo.customerAddresses.length > 0) {
+      addresses = customerInfo.customerAddresses.map((address, index) => {
+        return this.getCustomerAddressInsert(customerInfo.inquisicartCustomerNumber,
+          index,
+          `${address.firstName} ${address.lastName}`,
+          address.addressLine1,
+          address.addressLine2,
+          address.addressLine3,
+          address.city,
+          address.stateCode,
+          address.zipCode,
+          address.countryCode,
+          customerInfo.email,
+          '',
+          userEmail).toString();
+      });
+    }
     const sfaction = this.notifyCustomerIsReady(customerInfo.inquisicartCustomerNumber,
       customerInfo.addressSequenceNumber, moment().format('YYYYMMDD'), moment().format('HHmmss'));
-    return [header.toString(), address.toString(), sfaction.toString()];
+    return [header.toString()].concat(addresses, sfaction.toString());
   }
 };
 
