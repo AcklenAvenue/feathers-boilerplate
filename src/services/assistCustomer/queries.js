@@ -181,23 +181,51 @@ class CustomerQueries {
     this.library = lib;
     this.companyNumber = companyNo;
     var header = '';
+    var addresses = [];
     if (existingCustomerInformation && existingCustomerInformation.length > 0) {
       header = this.getCustomerHeaderUpdate(customerInfo.inquisicartCustomerNumber,
         customerInfo.companyName, customerInfo.sicCode, customerInfo.taxId,
         customerInfo.customerNumberFromAS, userEmail).toString();
+        addresses = [
+        this.getCustomerAddressUpdate(customerInfo.inquisicartCustomerNumber,
+          0,
+          customerInfo.companyName,
+          '-',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          customerInfo.email,
+          '',
+          userEmail).toString()
+      ];
     } else {
       header = this.getCustomerHeaderInsert(customerInfo.inquisicartCustomerNumber,
         customerInfo.companyName, customerInfo.sicCode, customerInfo.taxId,
         customerInfo.customerNumberFromAS, userEmail).toString();
+        addresses = [
+        this.getCustomerAddressInsert(customerInfo.inquisicartCustomerNumber,
+          0,
+          customerInfo.companyName,
+          '-',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          customerInfo.email,
+          '',
+          userEmail).toString()
+      ];
     }
-
-    const addresses = [];
     if (customerInfo.customerAddresses && customerInfo.customerAddresses.length > 0) {
       addresses = customerInfo.customerAddresses.map((address, index) => {
         const existingAddress = _.find(existingCustomerInformation, (record) => {
-          return record.ADDR_ADSQ === index;
+          return record.ADDR_ADSQ === index.toString();
         })
-
         if (existingAddress) {
           return this.getCustomerAddressUpdate(customerInfo.inquisicartCustomerNumber,
           index,
@@ -227,8 +255,6 @@ class CustomerQueries {
           '',
           userEmail).toString();
         }
-
-
       });
     }
 
@@ -240,8 +266,10 @@ class CustomerQueries {
           index, moment().format('YYYYMMDD'), moment().format('HHmmss')).toString();
       });
     } else {
-      sfaction = this.notifyCustomerIsReady(customerInfo.inquisicartCustomerNumber,
-      customerInfo.addressSequenceNumber, moment().format('YYYYMMDD'), moment().format('HHmmss')).toString();
+      sfaction = [
+        this.notifyCustomerIsReady(customerInfo.inquisicartCustomerNumber,
+          customerInfo.addressSequenceNumber, moment().format('YYYYMMDD'), moment().format('HHmmss')).toString()
+      ];
     }
 
     return [header].concat(addresses, sfaction);

@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    isProspect: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+    },
     userId: {
       required: true,
       type: Sequelize.INTEGER,

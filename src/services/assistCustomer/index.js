@@ -20,6 +20,33 @@ class Service {
     });
   }
 
+  getNewAssistCustomerNumber() {
+    return new Promise((resolve, reject) => {
+      const thisOptions = this.options;
+      try {
+        ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
+          function (errDB2, connDB2) {
+              if (errDB2) return console.log(errDB2);
+
+              try {
+                var rowsAssistCustomer = connDB2.querySync('select ASTPROOF2.GetCustomerNumber(cast(\'' + thisOptions.companyNumber + '\' as char(3))) as NewCustomerNumber from SYSIBM.SYSDUMMY1');
+                console.log(rowsAssistCustomer);
+                const newCustomerAssist = rowsAssistCustomer[0].NEWCUSTOMERNUMBER;
+                resolve(newCustomerAssist);
+              }
+              catch (err) {
+                console.log(err);
+                reject(err);
+              }
+          });
+      }
+      catch(err) {
+        console.log(err);
+        reject(err);
+      }
+    });
+  }
+
   getNewAssistProspectNumber() {
     return new Promise((resolve, reject) => {
       const thisOptions = this.options;
@@ -47,9 +74,29 @@ class Service {
     });
   }
 
+  convert(prospectNumber, customerNumber) {
+    const thisOptions = this.options;
+    try {
+      ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
+        function (errDB2, connDB2) {
+            if (errDB2) return console.log(errDB2);
+
+            try {
+              connDB2.querySync(`call astccobj.SF110('${thisOptions.companyNumber}', '${prospectNumber}', '${customerNumber}')`);
+              console.log(`Converting prospect ${prospectNumber} to customer ${customerNumber}`);
+            }
+            catch (err) {
+              console.log(err);
+            }
+        });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
   create(data, params) {
     const thisOptions = this.options;
-    console.log(data);
     try {
       ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
         function (errDB2, connDB2) {
@@ -68,7 +115,6 @@ class Service {
               };
               const customerQueries = new customerQuery();
               const customerExistingQuery = customerQueries.getExistingCustomerInformationQuery(thisOptions.library, thisOptions.companyNumber, customerInfo.inquisicartCustomerNumber);
-
               const existingCustomerInformation = connDB2.querySync(customerExistingQuery);
               const queries = customerQueries.getCustomerInsertOrUpdateQueries(thisOptions.library, thisOptions.companyNumber, customerInfo, data.user.email, existingCustomerInformation);
               queries.forEach((query) => {

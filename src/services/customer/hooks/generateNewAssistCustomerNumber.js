@@ -12,9 +12,18 @@ module.exports = function (options) {
   return function (hook) {
     const assistCustomerService = hook.app.service('/assistCustomers');
     hook.generateNewAssistCustomerNumber = true;
-    return assistCustomerService.getNewAssistProspectNumber()
+    if (hook.data.customerAddresses && hook.data.customerAddresses.length > 0) {
+      return assistCustomerService.getNewAssistCustomerNumber()
       .then((newCustomerNumber) => {
+        hook.data.isProspect = false;
         hook.data.customerNumberFromAS = newCustomerNumber;
       });
+    } else {
+      return assistCustomerService.getNewAssistProspectNumber()
+      .then((newCustomerNumber) => {
+        hook.data.isProspect = true;
+        hook.data.customerNumberFromAS = newCustomerNumber;
+      });
+    }
   };
 };

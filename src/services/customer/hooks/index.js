@@ -4,6 +4,7 @@ const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 const createAssistCustomer = require('./createAssistCustomer');
+const convertAssistCustomer = require('./convertAssistCustomer');
 const includeDetailModels = require('./includeDetailModels');
 const generateNewAssistCustomerNumber = require('./generateNewAssistCustomerNumber');
 
@@ -13,7 +14,7 @@ exports.before = {
   get: [],
   create: [generateNewAssistCustomerNumber()],
   update: [],
-  patch: [],
+  patch: [convertAssistCustomer()],
   remove: [],
 };
 
@@ -23,8 +24,8 @@ exports.after = {
   get: [],
   create: [hooks.populate('user', { field: 'userId', service: '/users' }),
     hooks.remove('user.password', 'user.facebookId', 'user.googleId', hook => true), createAssistCustomer()],
-  update: [hooks.populate('user', { field: 'userId', service: '/users' }),
+  update: [],
+  patch: [hooks.populate('user', { field: 'userId', service: '/users' }),
     hooks.remove('user.password', 'user.facebookId', 'user.googleId', hook => true), createAssistCustomer()],
-  patch: [],
   remove: [],
 };
