@@ -66,7 +66,10 @@ class Service {
                 email: data.user.email
               };
               const customerQueries = new customerQuery();
-              const queries = customerQueries.getCustomerInsertQueries(thisOptions.library, thisOptions.companyNumber, customerInfo, data.user.email);
+              const customerExistingQuery = customerQueries.getExistingCustomerInformationQuery(thisOptions.library, thisOptions.companyNumber, customerInfo.inquisicartCustomerNumber);
+
+              const existingCustomerInformation = connDB2.querySync(customerExistingQuery);
+              const queries = customerQueries.getCustomerInsertOrUpdateQueries(thisOptions.library, thisOptions.companyNumber, customerInfo, data.user.email, existingCustomerInformation);
               queries.forEach((query) => {
                 const response = connDB2.querySync(query);
               });
