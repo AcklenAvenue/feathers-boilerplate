@@ -25,11 +25,11 @@ module.exports = (sequelize) => {
     },
     addressLine2: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     addressLine3: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     city: {
       type: Sequelize.STRING,

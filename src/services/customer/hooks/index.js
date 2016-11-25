@@ -4,9 +4,10 @@ const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 const createAssistCustomer = require('./createAssistCustomer');
+const includeDetailModels = require('./includeDetailModels');
 
 exports.before = {
-  all: [],
+  all: [includeDetailModels()],
   find: [],
   get: [],
   create: [],
