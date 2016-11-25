@@ -102,7 +102,7 @@ class CustomerQueries {
           .set('CST_LMUID', userEmail)
           .set('CST_CRDAT', this.formatDateToAS400(Date.now()))
           .set('CST_CRUID', userEmail)
-          .where(`CST_CMCD = '${companyNo}' and CST_NUM = ${inquisicartCustomerNumber}`);
+          .where(`CST_CMCD = '${this.companyNumber}' and CST_NUM = ${webCartCustomerNumber}`);
 
     return updateHeader;
   }

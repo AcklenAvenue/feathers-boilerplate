@@ -49,6 +49,7 @@ class Service {
 
   create(data, params) {
     const thisOptions = this.options;
+    console.log(data);
     try {
       ibmdb.open(`DRIVER={DB2};DATABASE=${thisOptions.database};HOSTNAME=${thisOptions.host};UID=${thisOptions.user};PWD=${thisOptions.password};PORT=${thisOptions.port};PROTOCOL=TCPIP`,
         function (errDB2, connDB2) {
