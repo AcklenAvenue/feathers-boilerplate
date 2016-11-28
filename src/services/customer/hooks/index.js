@@ -7,6 +7,7 @@ const createAssistCustomer = require('./createAssistCustomer');
 const convertAssistCustomer = require('./convertAssistCustomer');
 const includeDetailModels = require('./includeDetailModels');
 const generateNewAssistCustomerNumber = require('./generateNewAssistCustomerNumber');
+const updateAddresses = require('./updateAddresses');
 
 exports.before = {
   all: [includeDetailModels()],
@@ -14,7 +15,7 @@ exports.before = {
   get: [],
   create: [generateNewAssistCustomerNumber()],
   update: [],
-  patch: [convertAssistCustomer()],
+  patch: [updateAddresses(), convertAssistCustomer()],
   remove: [],
 };
 

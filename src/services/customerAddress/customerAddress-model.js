@@ -1,16 +1,12 @@
-
-// address-model.js - A sequelize model
+// customerAddress-model.js - A sequelize model
 //
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
 
 const Sequelize = require('sequelize');
 
-// This must be set bigger than last customer Id from previous system
-const startId = Math.floor(Math.random() * 1000000) + 2000000;
-
-module.exports = (sequelize) => {
-  const address = sequelize.define('customerAddresses', {
+module.exports = function (sequelize) {
+  const customerAddress = sequelize.define('customerAddresses', {
     firstName: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -62,10 +58,10 @@ module.exports = (sequelize) => {
     },
   }, {
     freezeTableName: true,
-    initialAutoIncrement: startId,
+    initialAutoIncrement: 1000,
   });
 
-  address.sync();
+  customerAddress.sync();
 
-  return address;
+  return customerAddress;
 };

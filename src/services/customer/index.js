@@ -1,11 +1,9 @@
 const service = require('feathers-sequelize');
 const customer = require('./customer-model');
 const hooks = require('./hooks');
-const address = require('./address-model');
 
 module.exports = function () {
   const app = this;
-  address(app.get('sequelize'));
 
   const options = {
     Model: customer(app.get('sequelize')),

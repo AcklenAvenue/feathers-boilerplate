@@ -1,4 +1,5 @@
 
+const customerAddress = require('./customerAddress');
 const order = require('./order');
 const assistOrder = require('./assistOrder');
 const payeezy = require('./payeezy');
@@ -18,15 +19,16 @@ module.exports = function () {
   });
   app.set('sequelize', sequelize);
 
+  app.configure(product);
+  app.configure(customerAddress);
+  app.configure(order);
   app.configure(authentication);
   app.configure(user);
   app.configure(customer);
   app.configure(assistCustomer);
-  app.configure(product);
   app.configure(assistProduct);
   app.configure(payeezy);
   app.configure(assistOrder);
-  app.configure(order);
 
   const models = sequelize.models;
   Object.keys(models)
