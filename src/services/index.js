@@ -1,5 +1,6 @@
 
-const customerAddress = require('./customerAddress');
+const billingAddress = require('./billingAddress');
+const shippingAddress = require('./shippingAddress');
 const order = require('./order');
 const assistOrder = require('./assistOrder');
 const payeezy = require('./payeezy');
@@ -20,7 +21,7 @@ module.exports = function () {
   app.set('sequelize', sequelize);
 
   app.configure(product);
-  app.configure(customerAddress);
+  app.configure(shippingAddress);
   app.configure(order);
   app.configure(authentication);
   app.configure(user);
@@ -29,6 +30,7 @@ module.exports = function () {
   app.configure(assistProduct);
   app.configure(payeezy);
   app.configure(assistOrder);
+  app.configure(billingAddress);
 
   const models = sequelize.models;
   Object.keys(models)

@@ -12,7 +12,7 @@ module.exports = function (options) {
   return function (hook) {
     const assistCustomerService = hook.app.service('/assistCustomers');
     hook.generateNewAssistCustomerNumber = true;
-    if (hook.data.customerAddresses && hook.data.customerAddresses.length > 0) {
+    if (hook.data.billingAddress && hook.data.billingAddress.id) {
       return assistCustomerService.getNewAssistCustomerNumber()
       .then((newCustomerNumber) => {
         hook.data.isProspect = false;

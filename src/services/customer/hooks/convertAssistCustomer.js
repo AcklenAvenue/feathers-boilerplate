@@ -14,13 +14,12 @@ module.exports = function (options) {
   return function (hook) {
     hook.convertAssistCustomer = true;
     const assistCustomerService = hook.app.service('/assistCustomers');
-    if (hook.data.isProspect && hook.data.customerAddresses && hook.data.customerAddresses.length > 0) {
+    if (hook.data.isProspect && hook.data.billingAddress) {
       return assistCustomerService.getNewAssistCustomerNumber()
       .then((newCustomerNumber) => {
         hook.data.isProspect = false;
         const prospectNumber = hook.data.customerNumberFromAS;
         hook.data.customerNumberFromAS = newCustomerNumber;
-        hook.data.firstName = 'thisIsATest';
         assistCustomerService.convert(prospectNumber, newCustomerNumber);
       });
     }

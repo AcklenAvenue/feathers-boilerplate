@@ -38,7 +38,8 @@ module.exports = (sequelize) => {
     classMethods: {
       associate(models) {
         this.belongsTo(models.users);
-        this.hasMany(models.customerAddresses);
+        this.hasOne(models.billingAddresses);
+        this.hasMany(models.shippingAddresses);
       },
     },
   });

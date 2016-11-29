@@ -1,4 +1,4 @@
-// customerAddress-model.js - A sequelize model
+// shippingAddress-model.js - A sequelize model
 //
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
@@ -6,7 +6,7 @@
 const Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
-  const customerAddress = sequelize.define('customerAddresses', {
+  const shippingAddress = sequelize.define('shippingAddresses', {
     firstName: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -61,7 +61,7 @@ module.exports = function (sequelize) {
     initialAutoIncrement: 1000,
   });
 
-  customerAddress.sync();
+  shippingAddress.sync();
 
-  return customerAddress;
+  return shippingAddress;
 };

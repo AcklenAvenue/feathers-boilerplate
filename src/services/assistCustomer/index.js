@@ -103,6 +103,12 @@ class Service {
             if (errDB2) return console.log(errDB2);
 
             try {
+              var addresses = [];
+              if (data.billingAddress) {
+                addresses.push(data.billingAddress);
+              }
+              addresses = addresses.concat(data.shippingAddresses);
+
               const customerInfo = {
                 inquisicartCustomerNumber: data.id,
                 companyName: data.lastName + ', ' + data.firstName,
@@ -110,7 +116,7 @@ class Service {
                 taxId: '',
                 customerNumberFromAS: data.customerNumberFromAS,
                 addressSequenceNumber: '0',
-                customerAddresses: data.customerAddresses,
+                customerAddresses: addresses,
                 email: data.user.email
               };
               const customerQueries = new customerQuery();
