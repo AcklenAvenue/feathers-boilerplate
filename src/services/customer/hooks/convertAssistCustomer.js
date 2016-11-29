@@ -13,21 +13,16 @@ module.exports = function (options) {
   options = Object.assign({}, defaults, options);
   return function (hook) {
     hook.convertAssistCustomer = true;
-    return new Promise((resolve, reject) => {
-      const assistCustomerService = hook.app.service('/assistCustomers');
-      if (hook.data.isProspect && hook.data.customerAddresses && hook.data.customerAddresses.length > 0) {
-        assistCustomerService.getNewAssistCustomerNumber()
-        .then((newCustomerNumber) => {
-          hook.data.isProspect = false;
-          const prospectNumber = hook.data.customerNumberFromAS;
-          hook.data.customerNumberFromAS = newCustomerNumber;
-          assistCustomerService.convert(prospectNumber, newCustomerNumber);
-          resolve();
-        }).catch((err) => {
-          reject(err);
-        });
-      }
-      resolve();
-    });
+    const assistCustomerService = hook.app.service('/assistCustomers');
+    if (hook.data.isProspect && hook.data.customerAddresses && hook.data.customerAddresses.length > 0) {
+      return assistCustomerService.getNewAssistCustomerNumber()
+      .then((newCustomerNumber) => {
+        hook.data.isProspect = false;
+        const prospectNumber = hook.data.customerNumberFromAS;
+        hook.data.customerNumberFromAS = newCustomerNumber;
+        hook.data.firstName = 'thisIsATest';
+        assistCustomerService.convert(prospectNumber, newCustomerNumber);
+      });
+    }
   };
 };
