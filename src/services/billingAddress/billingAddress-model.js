@@ -40,15 +40,7 @@ module.exports = function (sequelize) {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    stateCode: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
     country: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    countryCode: {
       type: Sequelize.STRING,
       allowNull: false,
     },

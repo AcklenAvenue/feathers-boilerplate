@@ -44,8 +44,8 @@ class CustomerQueries {
   }
 
   getCustomerAddressInsert(webCartCustomerNumber, addressSequence,
-    customerName, addressLine1, addressLine2, addressLine3, city, stateCode, zipCode,
-    countryCode, email1, email2, userEmail) {
+    customerName, addressLine1, addressLine2, addressLine3, city, state, zipCode,
+    country, email1, email2, userEmail) {
     const insertAddress = squel.insert().into(this.getTable('T_ADDRESS'))
           .setFields(
       {
@@ -59,10 +59,10 @@ class CustomerQueries {
         ADDR_LINE3: addressLine3,
         ADDR_CTY_D: city,
         ADDR_LDESC: '',
-        ADDR_LOCCD: stateCode,
+        ADDR_LOCCD: state,
         ADDR_LCCCD: '',
         ADDR_PSTCD: zipCode,
-        ADDR_CNTCD: countryCode,
+        ADDR_CNTCD: country,
         ADDR_EML1: email1,
         ADDR_EML2: email2,
         ADDR_LMDT: this.formatDateToAS400(Date.now()),
@@ -108,8 +108,8 @@ class CustomerQueries {
   }
 
   getCustomerAddressUpdate(webCartCustomerNumber, addressSequence,
-    customerName, addressLine1, addressLine2, addressLine3, city, stateCode, zipCode,
-    countryCode, email1, email2, userEmail) {
+    customerName, addressLine1, addressLine2, addressLine3, city, state, zipCode,
+    country, email1, email2, userEmail) {
     const insertAddress = squel.update().table(this.getTable('T_ADDRESS'))
           .setFields(
       {
@@ -123,10 +123,10 @@ class CustomerQueries {
         ADDR_LINE3: addressLine3,
         ADDR_CTY_D: city,
         ADDR_LDESC: '',
-        ADDR_LOCCD: stateCode,
+        ADDR_LOCCD: state,
         ADDR_LCCCD: '',
         ADDR_PSTCD: zipCode,
-        ADDR_CNTCD: countryCode,
+        ADDR_CNTCD: country,
         ADDR_EML1: email1,
         ADDR_EML2: email2,
         ADDR_LMDT: this.formatDateToAS400(Date.now()),
@@ -234,9 +234,9 @@ class CustomerQueries {
           address.addressLine2,
           address.addressLine3,
           address.city,
-          address.stateCode,
+          address.state,
           address.zipCode,
-          address.countryCode,
+          address.country,
           customerInfo.email,
           '',
           userEmail).toString();
@@ -248,9 +248,9 @@ class CustomerQueries {
           address.addressLine2,
           address.addressLine3,
           address.city,
-          address.stateCode,
+          address.state,
           address.zipCode,
-          address.countryCode,
+          address.country,
           customerInfo.email,
           '',
           userEmail).toString();

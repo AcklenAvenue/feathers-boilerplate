@@ -107,7 +107,7 @@ class Service {
               if (data.billingAddress) {
                 addresses.push(data.billingAddress);
               }
-              addresses = addresses.concat(data.shippingAddresses);
+              addresses = addresses.concat(data.shippingAddresses || []);
 
               const customerInfo = {
                 inquisicartCustomerNumber: data.id,
