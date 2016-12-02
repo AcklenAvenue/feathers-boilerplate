@@ -22,18 +22,24 @@ class Service {
               console.log(errDB2);
               reject(errDB2);
             }
-
             const query = 'select IAPRT# as assistCode, IA101 as name, IA103 as description from astdta.ICPRTMIA  where IACOM# = \'' +
               thisOptions.companyNumber +'\' and UPPER(IAPRT#) = UPPER(\'' +
               id +'\') and IAWEBF = 1';
             var rowsAssistProduct = connDB2.querySync(query);
 
             if (rowsAssistProduct && rowsAssistProduct.length > 0) {
-              console.log(rowsAssistProduct);
+              const customerId = (params.user && params.user.customer) ? params.user.customer.customerNumberFromAS : '';
+              const queryPrice = `select ASTPROOF2.GetProductPrice(cast('${thisOptions.companyNumber}' as char(3)), cast('${customerId}' as char(8)), cast('STD' as char(3)), cast('US' as char(2)), cast('${id}' as char(15)), cast('EA' as char(2)), cast('1              ' as char(125))) as ProductPrice from SYSIBM.SYSDUMMY1`
+              const rowsAssistPrice = connDB2.querySync(queryPrice);
+              var price = '0.00';
+              if (rowsAssistPrice && rowsAssistPrice.length > 0) {
+                price = parseFloat(rowsAssistPrice[0].PRODUCTPRICE.trim())
+              }
               resolve({
                 assistCode: rowsAssistProduct[0].ASSISTCODE.trim(),
                 name: rowsAssistProduct[0].NAME.trim(),
                 description: rowsAssistProduct[0].DESCRIPTION.trim(),
+                price,
               });
             } else {
               resolve({});
