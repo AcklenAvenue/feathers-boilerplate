@@ -16,7 +16,7 @@ module.exports = function (options) {
     const shippingAddresses = hook.app.service('/shippingAddresses');
     const billingAddresses = hook.app.service('/billingAddresses');
     const updatePromises = hook.data.shippingAddresses.map(address => {
-      if (address.id) {
+      if (address.id !== 0) {
         console.log('update');
         return shippingAddresses.update(address.id, address);
       } else {
