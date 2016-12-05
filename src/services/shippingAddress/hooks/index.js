@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars, no-console */
-
-const globalHooks = require('../../../hooks');
-const hooks = require('feathers-hooks');
+const globalHooks = require('../../../hooks'); // eslint-disable-line no-unused-vars
+const hooks = require('feathers-hooks'); // eslint-disable-line no-unused-vars
 const auth = require('feathers-authentication').hooks;
 
 exports.before = {

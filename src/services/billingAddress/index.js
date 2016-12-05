@@ -1,12 +1,12 @@
-
 const service = require('feathers-sequelize');
-const product = require('./product-model');
+const billingAddress = require('./billingAddress-model');
 const hooks = require('./hooks');
 
 module.exports = function () {
   const app = this;
+
   const options = {
-    Model: product(app.get('sequelize')),
+    Model: billingAddress(app.get('sequelize')),
     paginate: {
       default: 5,
       max: 25,
@@ -14,14 +14,14 @@ module.exports = function () {
   };
 
   // Initialize our service with any options it requires
-  app.use('/products', service(options));
+  app.use('/billingAddresses', service(options));
 
   // Get our initialize service to that we can bind hooks
-  const productService = app.service('/products');
+  const billingAddressService = app.service('/billingAddresses');
 
   // Set up our before hooks
-  productService.before(hooks.before);
+  billingAddressService.before(hooks.before);
 
   // Set up our after hooks
-  productService.after(hooks.after);
+  billingAddressService.after(hooks.after);
 };

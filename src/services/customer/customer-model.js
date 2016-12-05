@@ -19,8 +19,12 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    billingAddress: {
+    customerNumberFromAS: {
       type: Sequelize.STRING,
+      allowNull: false,
+    },
+    isProspect: {
+      type: Sequelize.BOOLEAN,
       allowNull: false,
     },
     userId: {
@@ -31,9 +35,14 @@ module.exports = (sequelize) => {
   }, {
     freezeTableName: true,
     initialAutoIncrement: startId,
+    classMethods: {
+      associate(models) {
+        this.belongsTo(models.users);
+        this.hasOne(models.billingAddresses);
+        this.hasMany(models.shippingAddresses);
+      },
+    },
   });
-
-  customer.belongsTo(sequelize.models.users);
 
   customer.sync();
 
