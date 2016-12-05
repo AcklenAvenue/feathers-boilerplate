@@ -28,9 +28,6 @@ module.exports = function (options) {
         }
       })
         .then(localProduct => {
-          // Remove! Fake price
-          hook.result.price = (new Date()).getMilliseconds() / 10.0;
-
           if (localProduct.data.length == 0) {
             productService
               .create(hook.result)
