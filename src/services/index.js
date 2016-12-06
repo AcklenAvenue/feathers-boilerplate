@@ -1,4 +1,5 @@
 
+const customerCreditCard = require('./customerCreditCard');
 const billingAddress = require('./billingAddress');
 const shippingAddress = require('./shippingAddress');
 const order = require('./order');
@@ -31,6 +32,7 @@ module.exports = function () {
   app.configure(payeezy);
   app.configure(assistOrder);
   app.configure(billingAddress);
+  app.configure(customerCreditCard);
 
   const models = sequelize.models;
   Object.keys(models)

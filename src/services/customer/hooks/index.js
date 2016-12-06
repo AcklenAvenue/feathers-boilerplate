@@ -8,6 +8,8 @@ const convertAssistCustomer = require('./convertAssistCustomer');
 const includeDetailModels = require('./includeDetailModels');
 const generateNewAssistCustomerNumber = require('./generateNewAssistCustomerNumber');
 const updateAddresses = require('./updateAddresses');
+const updateCreditCards = require('./updateCreditCards');
+const processQueryParams = require('./processQueryParams');
 
 exports.before = {
   all: [includeDetailModels()],
@@ -15,7 +17,7 @@ exports.before = {
   get: [],
   create: [generateNewAssistCustomerNumber()],
   update: [],
-  patch: [updateAddresses(), convertAssistCustomer()],
+  patch: [processQueryParams(), updateAddresses(), updateCreditCards(), convertAssistCustomer()],
   remove: [],
 };
 
