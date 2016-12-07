@@ -16,6 +16,7 @@ var PAYTOKEN = "";
 var PAYHMAC = "";
 var PAYTTYPE = "";
 var PAYMERCHANT = "";
+var MERCHANTCODE = "";
 
 if (environment === "dev") {
   AS400HOST = process.env.AS400HOST_DEV;
@@ -31,6 +32,7 @@ if (environment === "dev") {
   PAYHMAC = process.env.PAYHMAC_DEV;
   PAYTTYPE = process.env.PAYTTYPE_DEV;
   PAYMERCHANT = process.env.PAYMERCHANT_DEV;
+  MERCHANTCODE = process.env.MERCHANTCODE;
 }
 if (environment === "staging") {
   AS400HOST = process.env.AS400HOST_STA;
@@ -46,6 +48,8 @@ if (environment === "staging") {
   PAYHMAC = process.env.PAYHMAC_STA;
   PAYTTYPE = process.env.PAYTTYPE_STA;
   PAYMERCHANT = process.env.PAYMERCHANT_STA;
+  MERCHANTCODE = process.env.MERCHANTCODE;
+
 }
 if (environment === "production") {
   AS400HOST = process.env.AS400HOST_PROD;
@@ -61,6 +65,7 @@ if (environment === "production") {
   PAYHMAC = process.env.PAYHMAC_PROD;
   PAYTTYPE = process.env.PAYTTYPE_PROD;
   PAYMERCHANT = process.env.PAYMERCHANT_PROD;
+  MERCHANTCODE = process.env.MERCHANTCODE;
 }
 
 gulp.task('config-replace-secrets', function() {
@@ -79,6 +84,7 @@ gulp.task('config-replace-secrets', function() {
     .pipe(replace('$PAYHMAC', PAYHMAC))
     .pipe(replace('$PAYTTYPE', PAYTTYPE))
     .pipe(replace('$PAYMERCHANT', PAYMERCHANT))
+    .pipe(replace('$MERCHANTCODE', MERCHANTCODE))
     .pipe(rename(environment + ".json"))
     .pipe(gulp.dest("./config"));
 });

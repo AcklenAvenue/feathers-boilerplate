@@ -31,7 +31,8 @@
     "port": $AS400PORT,
     "library": "$AS4000LIBRARY",
     "database": "$AS400DATABASE",
-    "companyNumber": "$AS400CN"
+    "companyNumber": "$AS400CN",
+    "merchantCode": "$MERCHANTCODE"
   },
   "payments": {
     "url": "$PAYURL",

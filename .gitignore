@@ -84,4 +84,7 @@ bk-*.log
 npm-debug.log.*
 
 *.pem
+
+.DS_Store
+
 >>>>>>> new-backend-deploy
