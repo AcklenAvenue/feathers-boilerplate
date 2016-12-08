@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
         this.belongsTo(models.users);
         this.hasOne(models.billingAddresses);
         this.hasMany(models.shippingAddresses);
+        this.hasMany(models.customerCreditCards);
       },
     },
   });

@@ -12,8 +12,12 @@ const defaults = {};
 module.exports = function (options) {
   options = Object.assign({}, defaults, options);
   return function (hook) {
-    const assistCustomerService = hook.app.service('/assistCustomers');
-    assistCustomerService.create(hook.result);
+    if (hook.method !== 'patch' ||
+        (hook.params.updateParams &&
+        hook.params.updateParams.updateAddresses)) {
+      const assistCustomerService = hook.app.service('/assistCustomers');
+      assistCustomerService.create(hook.result);
+    }
     hook.createAssistCustomer = true;
   };
 };
