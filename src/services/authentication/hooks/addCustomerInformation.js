@@ -20,6 +20,8 @@ module.exports = function (options) {
     }).then(customerData => {
       const customerInformation = customerData.data;
       hook.result.data.customer = customerInformation.length > 0 ? customerInformation[0].dataValues : {};
+    }).catch(error => {
+      console.log(error);
     });
   };
 };

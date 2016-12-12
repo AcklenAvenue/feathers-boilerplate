@@ -14,7 +14,29 @@ module.exports = function (options) {
     return new Promise((resolve, reject) => {
       const sequelize = hook.app.get('sequelize')
       hook.params.sequelize = {
-        include: [{ model: sequelize.models.customerCreditCards }, { model: sequelize.models.shippingAddresses }, { model: sequelize.models.billingAddresses }]
+        include: [
+          {
+            model: sequelize.models.customerCreditCards,
+            required: false,
+            where:
+            {
+              $or: [
+                {
+                  deleted: {
+                    $eq: false
+                  }
+                },
+                {
+                  deleted: {
+                    $eq: null
+                  }
+                }
+              ]
+            }
+          },
+          { model: sequelize.models.shippingAddresses },
+          { model: sequelize.models.billingAddresses }
+        ]
       }
       resolve();
     });
