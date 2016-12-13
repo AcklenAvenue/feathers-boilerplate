@@ -23,6 +23,11 @@ module.exports = function (sequelize) {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    deleted: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      required: true,
+    },
     customerId: {
       required: true,
       type: Sequelize.INTEGER,
@@ -30,6 +35,7 @@ module.exports = function (sequelize) {
     },
   }, {
     freezeTableName: true,
+
   });
 
   customerCreditCard.sync();
