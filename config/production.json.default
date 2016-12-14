@@ -40,5 +40,73 @@
     "hmacKey": "$PAYHMAC",
     "tokenType": "$PAYTTYPE",
     "merchantReference": "$PAYMERCHANT"
+  },
+  "shipment": {
+    "shippoKey" : "",
+    "dollarToLBSRatio": 14,
+    "boxes": [
+      {
+          "max_weight": 6,
+          "cubic_inces": 324,
+          "length": 12,
+          "width": 9,
+          "height": 3
+      },
+      {
+          "max_weight": 11,
+          "cubic_inces": 462,
+          "length": 14,
+          "width": 11,
+          "height": 3
+      },
+      {
+          "max_weight": 13,
+          "cubic_inces": 756,
+          "length": 12,
+          "width": 9,
+          "height": 7
+      },
+      {
+          "max_weight": 14,
+          "cubic_inces": 924,
+          "length": 14,
+          "width": 11,
+          "height": 6
+      },
+      {
+          "max_weight": 22,
+          "cubic_inces": 1512,
+          "length": 14,
+          "width": 12,
+          "height": 9
+      },
+      {
+          "max_weight": 40,
+          "cubic_inces": 1944,
+          "length": 18,
+          "width": 12,
+          "height": 9
+      },
+      {
+          "max_weight": 50,
+          "cubic_inces": 2808,
+          "length": 18,
+          "width": 13,
+          "height": 12
+      }
+    ],
+    "addressFrom": {
+      "object_purpose": "QUOTE",
+      "name": "Inquisicorp",
+      "street1": "8042 S. Grant Way",
+      "city": "Littleton",
+      "state": "CO",
+      "zip": "80110",
+      "country": "US"
+    },
+    "parcelUnits": {
+      "distance_unit": "in",
+      "mass_unit": "lb"
+    }
   }
 }
