@@ -1,4 +1,5 @@
 
+const shipmentProvider = require('./shipmentProvider');
 const customerCreditCard = require('./customerCreditCard');
 const billingAddress = require('./billingAddress');
 const shippingAddress = require('./shippingAddress');
@@ -41,4 +42,5 @@ module.exports = function () {
     .forEach(model => model.associate(models));
 
   sequelize.sync();
+  app.configure(shipmentProvider);
 };
