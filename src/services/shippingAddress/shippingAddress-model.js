@@ -47,6 +47,10 @@ module.exports = function (sequelize) {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    assistSequence: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
     customerId: {
       required: true,
       type: Sequelize.INTEGER,
