@@ -43,7 +43,7 @@
     "merchantReference": "$PAYMERCHANT"
   },
   "shipment": {
-    "shippoKey" : "",
+    "shippoKey" : "$SHIPPO_KEY",
     "dollarToLBSRatio": 14,
     "boxes": [
       {
