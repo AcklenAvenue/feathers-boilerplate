@@ -17,6 +17,7 @@ var PAYHMAC = "";
 var PAYTTYPE = "";
 var PAYMERCHANT = "";
 var MERCHANTCODE = "";
+var SHIPPO_KEY = "";
 
 if (environment === "dev") {
   AS400HOST = process.env.AS400HOST_DEV;
@@ -33,6 +34,7 @@ if (environment === "dev") {
   PAYTTYPE = process.env.PAYTTYPE_DEV;
   PAYMERCHANT = process.env.PAYMERCHANT_DEV;
   MERCHANTCODE = process.env.MERCHANTCODE;
+  SHIPPO_KEY = process.env.SHIPPO_KEY;
 }
 if (environment === "staging") {
   AS400HOST = process.env.AS400HOST_STA;
@@ -49,6 +51,7 @@ if (environment === "staging") {
   PAYTTYPE = process.env.PAYTTYPE_STA;
   PAYMERCHANT = process.env.PAYMERCHANT_STA;
   MERCHANTCODE = process.env.MERCHANTCODE;
+  SHIPPO_KEY = process.env.SHIPPO_KEY;
 
 }
 if (environment === "production") {
@@ -85,6 +88,7 @@ gulp.task('config-replace-secrets', function() {
     .pipe(replace('$PAYTTYPE', PAYTTYPE))
     .pipe(replace('$PAYMERCHANT', PAYMERCHANT))
     .pipe(replace('$MERCHANTCODE', MERCHANTCODE))
+    .pipe(replace('$SHIPPO_KEY', SHIPPO_KEY))
     .pipe(rename(environment + ".json"))
     .pipe(gulp.dest("./config"));
 });
