@@ -66,8 +66,8 @@ class CustomerQueries {
         ADDR_EML1: email1,
         ADDR_EML2: email2,
         ADDR_LMDT: this.formatDateToAS400(Date.now()),
-        ADDR_ATEL: 'N',
-        ADDR_AMAIL: 'N',
+        ADDR_ATEL: 'Y',
+        ADDR_AMAIL: 'Y',
         ADDR_ARENT: 'N',
         ADDR_ARNTT: 'N',
         ADDR_ARNTM: 'N',
@@ -78,6 +78,100 @@ class CustomerQueries {
       }
 
           );
+    return insertAddress;
+  }
+
+    getCustomerContactInsert(webCartCustomerNumber, addressSequence,
+      phoneCountryCode, phoneAreaCode, phoneFirstThree, phoneLastFour, phoneExtNumber, email) {
+    const insertAddress1 = squel.insert().into(this.getTable('T_ADDRC_CM'))
+          .setFields(
+      {
+        ADCM_CMCD: this.companyNumber,
+        ADCM_CSTCD: webCartCustomerNumber,
+        ADCM_ADSQ: addressSequence,
+        ADCM_ADCSQ: 0,
+        ADCM_ACMSQ: 0,
+        ADCM_CMMTH: 'PHONE1',
+        ADCM_COMMT: '',
+        ADCM_CTYCD: phoneCountryCode,
+        ADCM_ARCD: phoneAreaCode,
+        ADCM_EXCD: phoneFirstThree,
+        ADCM_PHNUM: phoneLastFour,
+        ADCM_EXT: phoneExtNumber,
+        ADCM_EML1: email,
+        ADCM_EML2: '',
+        ADCM_COMM: '',
+        ADCM_STAT: 1,
+        ADCM_LMD: this.formatDateToAS400(Date.now()),
+        ADCM_CDAT: this.formatDateToAS400(Date.now()),
+      });
+    const insertAddress2 = squel.insert().into(this.getTable('T_ADDRC_CM'))
+          .setFields(
+      {
+        ADCM_CMCD: this.companyNumber,
+        ADCM_CSTCD: webCartCustomerNumber,
+        ADCM_ADSQ: addressSequence,
+        ADCM_ADCSQ: 0,
+        ADCM_ACMSQ: 1,
+        ADCM_CMMTH: 'PHONE2',
+        ADCM_COMMT: '',
+        ADCM_CTYCD: '',
+        ADCM_ARCD: '',
+        ADCM_EXCD: '',
+        ADCM_PHNUM: '',
+        ADCM_EXT: '',
+        ADCM_EML1: email,
+        ADCM_EML2: '',
+        ADCM_COMM: '',
+        ADCM_STAT: 1,
+        ADCM_LMD: this.formatDateToAS400(Date.now()),
+        ADCM_CDAT: this.formatDateToAS400(Date.now()),
+      });
+    const insertAddress3 = squel.insert().into(this.getTable('T_ADDRC_CM'))
+          .setFields(
+      {
+        ADCM_CMCD: this.companyNumber,
+        ADCM_CSTCD: webCartCustomerNumber,
+        ADCM_ADSQ: addressSequence,
+        ADCM_ADCSQ: 0,
+        ADCM_ACMSQ: 2,
+        ADCM_CMMTH: 'EMAIL',
+        ADCM_COMMT: '',
+        ADCM_CTYCD: '',
+        ADCM_ARCD: '',
+        ADCM_EXCD: '',
+        ADCM_PHNUM: '',
+        ADCM_EXT: '',
+        ADCM_EML1: email,
+        ADCM_EML2: '',
+        ADCM_COMM: '',
+        ADCM_STAT: 1,
+        ADCM_LMD: this.formatDateToAS400(Date.now()),
+        ADCM_CDAT: this.formatDateToAS400(Date.now()),
+      });
+    return [insertAddress1.toString(), insertAddress2.toString(), insertAddress3.toString()];
+  }
+
+getCustomerContactRecordInsert(webCartCustomerNumber, addressSequence,
+    lastName, firstName) {
+    const insertAddress = squel.insert().into(this.getTable('T_ADDR_CT'))
+          .setFields(
+      {
+        ADRCT_COCD: this.companyNumber,
+        ADRCT_CSCD: webCartCustomerNumber,
+        ADRCT_ADSQ: addressSequence,
+        ADRCT_ACSQ: 0,
+        ADRCT_LNAM: lastName,
+        ADRCT_SALU: '',
+        ADRCT_FNAM: firstName,
+        ADRCT_MNAM: '',
+        ADRCT_SUFF: '',
+        ADRCT_POSC: '',
+        ADRCT_NICK: '',
+        ADRCT_STS: '1',
+        ADRCT_L_MD: this.formatDateToAS400(Date.now()),
+        ADDRC_C_D: this.formatDateToAS400(Date.now())
+      });
     return insertAddress;
   }
 
@@ -130,8 +224,8 @@ class CustomerQueries {
         ADDR_EML1: email1,
         ADDR_EML2: email2,
         ADDR_LMDT: this.formatDateToAS400(Date.now()),
-        ADDR_ATEL: 'N',
-        ADDR_AMAIL: 'N',
+        ADDR_ATEL: 'Y',
+        ADDR_AMAIL: 'Y',
         ADDR_ARENT: 'N',
         ADDR_ARNTT: 'N',
         ADDR_ARNTM: 'N',
@@ -141,6 +235,104 @@ class CustomerQueries {
         ADDR_CRUID: userEmail,
       })
       .where(`ADDR_ADSQ='${addressSequence}' and ADDR_CSTCD=${webCartCustomerNumber}`)
+    return insertAddress;
+  }
+
+    getCustomerContactUpdate(webCartCustomerNumber, addressSequence,
+      phoneCountryCode, phoneAreaCode, phoneFirstThree, phoneLastFour, phoneExtNumber, email) {
+    const insertAddress1 = squel.update().table(this.getTable('T_ADDRC_CM'))
+          .setFields(
+      {
+        ADCM_CMCD: this.companyNumber,
+        ADCM_CSTCD: webCartCustomerNumber,
+        ADCM_ADSQ: addressSequence,
+        ADCM_ADCSQ: 0,
+        ADCM_ACMSQ: 0,
+        ADCM_CMMTH: 'PHONE1',
+        ADCM_COMMT: '',
+        ADCM_CTYCD: phoneCountryCode,
+        ADCM_ARCD: phoneAreaCode,
+        ADCM_EXCD: phoneFirstThree,
+        ADCM_PHNUM: phoneLastFour,
+        ADCM_EXT: phoneExtNumber,
+        ADCM_EML1: email,
+        ADCM_EML2: '',
+        ADCM_COMM: '',
+        ADCM_STAT: 1,
+        ADCM_LMD: this.formatDateToAS400(Date.now()),
+        ADCM_CDAT: this.formatDateToAS400(Date.now()),
+      })
+      .where(`ADCM_ADSQ='${addressSequence}' and ADCM_CSTCD=${webCartCustomerNumber} and ADCM_ACMSQ=0`);
+    const insertAddress2 = squel.update().table(this.getTable('T_ADDRC_CM'))
+          .setFields(
+      {
+        ADCM_CMCD: this.companyNumber,
+        ADCM_CSTCD: webCartCustomerNumber,
+        ADCM_ADSQ: addressSequence,
+        ADCM_ADCSQ: 0,
+        ADCM_ACMSQ: 1,
+        ADCM_CMMTH: 'PHONE2',
+        ADCM_COMMT: '',
+        ADCM_CTYCD: '',
+        ADCM_ARCD: '',
+        ADCM_EXCD: '',
+        ADCM_PHNUM: '',
+        ADCM_EXT: '',
+        ADCM_EML1: email,
+        ADCM_EML2: '',
+        ADCM_COMM: '',
+        ADCM_STAT: 1,
+        ADCM_LMD: this.formatDateToAS400(Date.now()),
+        ADCM_CDAT: this.formatDateToAS400(Date.now()),
+      })
+      .where(`ADCM_ADSQ='${addressSequence}' and ADCM_CSTCD=${webCartCustomerNumber} and ADCM_ACMSQ=1`);
+    const insertAddress3 = squel.update().table(this.getTable('T_ADDRC_CM'))
+          .setFields(
+      {
+        ADCM_CMCD: this.companyNumber,
+        ADCM_CSTCD: webCartCustomerNumber,
+        ADCM_ADSQ: addressSequence,
+        ADCM_ADCSQ: 0,
+        ADCM_ACMSQ: 2,
+        ADCM_CMMTH: 'EMAIL',
+        ADCM_COMMT: '',
+        ADCM_CTYCD: '',
+        ADCM_ARCD: '',
+        ADCM_EXCD: '',
+        ADCM_PHNUM: '',
+        ADCM_EXT: '',
+        ADCM_EML1: email,
+        ADCM_EML2: '',
+        ADCM_COMM: '',
+        ADCM_STAT: 1,
+        ADCM_LMD: this.formatDateToAS400(Date.now()),
+        ADCM_CDAT: this.formatDateToAS400(Date.now()),
+      })
+      .where(`ADCM_ADSQ='${addressSequence}' and ADCM_CSTCD=${webCartCustomerNumber} and ADCM_ACMSQ=2`);
+    return [insertAddress1.toString(), insertAddress2.toString(), insertAddress3.toString()];
+  }
+
+  getCustomerContactRecordUpdate(webCartCustomerNumber, addressSequence,
+    lastName, firstName) {
+    const insertAddress = squel.update().table(this.getTable('T_ADDR_CT'))
+          .setFields(
+      {
+        ADRCT_COCD: this.companyNumber,
+        ADRCT_CSCD: webCartCustomerNumber,
+        ADRCT_ADSQ: addressSequence,
+        ADRCT_ACSQ: 0,
+        ADRCT_LNAM: lastName,
+        ADRCT_SALU: '',
+        ADRCT_FNAM: firstName,
+        ADRCT_MNAM: '',
+        ADRCT_SUFF: '',
+        ADRCT_POSC: '',
+        ADRCT_NICK: '',
+        ADRCT_STS: '1',
+        ADRCT_L_MD: this.formatDateToAS400(Date.now()),
+        ADDRC_C_D: this.formatDateToAS400(Date.now())
+      })
+      .where(`ADRCT_ADSQ='${addressSequence}' and ADRCT_CSCD=${webCartCustomerNumber}`);
     return insertAddress;
   }
 
@@ -199,8 +391,18 @@ class CustomerQueries {
           '',
           customerInfo.email,
           '',
-          userEmail).toString()
-      ];
+        userEmail).toString()].concat(
+        this.getCustomerContactUpdate(customerInfo.inquisicartCustomerNumber,
+          0,
+          '',
+          '000',
+          '000',
+          '0000',
+          '0000'),
+          this.getCustomerContactRecordUpdate(customerInfo.inquisicartCustomerNumber,
+          0,
+          '',
+          '').toString());
     } else {
       header = this.getCustomerHeaderInsert(customerInfo.inquisicartCustomerNumber,
         customerInfo.companyName, customerInfo.sicCode, customerInfo.taxId,
@@ -218,16 +420,29 @@ class CustomerQueries {
           '',
           customerInfo.email,
           '',
-          userEmail).toString()
-      ];
+        userEmail).toString()].concat(
+          this.getCustomerContactInsert(customerInfo.inquisicartCustomerNumber,
+          0,
+          '',
+          '000',
+          '000',
+          '0000',
+          '0000',
+          customerInfo.email),
+          this.getCustomerContactRecordInsert(customerInfo.inquisicartCustomerNumber,
+          0,
+          '',
+          '').toString());
     }
     if (customerInfo.customerAddresses && customerInfo.customerAddresses.length > 0) {
       addresses = customerInfo.customerAddresses.map((address, index) => {
         const existingAddress = _.find(existingCustomerInformation, (record) => {
           return record.ADDR_ADSQ === index.toString();
         })
+        var phoneNumber = address.phoneNumber || '';
+        phoneNumber = _.padStart(phoneNumber, 7, '0');
         if (existingAddress) {
-          return this.getCustomerAddressUpdate(customerInfo.inquisicartCustomerNumber,
+          return [this.getCustomerAddressUpdate(customerInfo.inquisicartCustomerNumber,
           index,
           `${address.firstName} ${address.lastName}`,
           address.addressLine1,
@@ -239,9 +454,21 @@ class CustomerQueries {
           address.country,
           customerInfo.email,
           '',
-          userEmail).toString();
+          userEmail).toString()].concat(
+          this.getCustomerContactUpdate(customerInfo.inquisicartCustomerNumber,
+          index,
+          '',
+          '',
+          phoneNumber.substring(0, 3),
+          phoneNumber.substring(phoneNumber.length - 4, phoneNumber.lenght),
+          '',
+          customerInfo.email),
+          this.getCustomerContactRecordUpdate(customerInfo.inquisicartCustomerNumber,
+          index,
+          address.lastName,
+          address.firstName).toString());
         } else {
-          return this.getCustomerAddressInsert(customerInfo.inquisicartCustomerNumber,
+          return [this.getCustomerAddressInsert(customerInfo.inquisicartCustomerNumber,
           index,
           `${address.firstName} ${address.lastName}`,
           address.addressLine1,
@@ -253,7 +480,19 @@ class CustomerQueries {
           address.country,
           customerInfo.email,
           '',
-          userEmail).toString();
+          userEmail).toString()].concat(
+          this.getCustomerContactInsert(customerInfo.inquisicartCustomerNumber,
+          index,
+          '',
+          '',
+          phoneNumber.substring(0, 3),
+          phoneNumber.substring(phoneNumber.length - 4, phoneNumber.lenght),
+          '',
+          customerInfo.email),
+          this.getCustomerContactRecordInsert(customerInfo.inquisicartCustomerNumber,
+          index,
+          address.lastName,
+          address.firstName).toString());
         }
       });
     }
@@ -272,7 +511,7 @@ class CustomerQueries {
       ];
     }
 
-    return [header].concat(addresses, sfaction);
+    return [header].concat(_.flatten(addresses), sfaction);
   }
 };
 
