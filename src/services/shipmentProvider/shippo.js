@@ -29,6 +29,26 @@ class Shippo {
   }
   /* eslint-enable no-param-reassign */
 
+  getCustomsDeclaration(orderTotal, orderWeight) {
+    return {
+      contents_type: 'MERCHANDISE',
+      non_delivery_option: 'RETURN',
+      certify: true,
+      certify_signer: 'Inquisicorp',
+      items: [
+        {
+          description: 'Books',
+          quantity: 1,
+          net_weight: orderWeight,
+          mass_unit: this.shipmentConfig.parcelUnits.mass_unit,
+          value_amount: orderTotal,
+          value_currency: 'USD',
+          tariff_number: '',
+          origin_country: 'US',
+        }],
+    };
+  }
+
   getShipmentOptions(addressTo, orderTotal) {
     const orderWeight = _.ceil(orderTotal / this.shipmentConfig.dollarToLBSRatio);
     const packages = this.getPackages(orderWeight, this.shipmentConfig.boxes);
@@ -39,6 +59,9 @@ class Shippo {
       parcel: packages,
       async: false,
     };
+    if (addressTo.country !== 'US') {
+      shipment.customs_declaration = this.getCustomsDeclaration(orderTotal, orderWeight);
+    }
     return new Promise((resolve, reject) => {
       this.shippo.shipment.create(shipment).then((response) => {
         const rates = response.rates_list.map(rate => _.pick(rate, [
