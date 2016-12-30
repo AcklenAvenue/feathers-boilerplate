@@ -7,6 +7,9 @@
 
 const Sequelize = require('sequelize');
 
+// This must be set bigger than last customer Id from previous system
+const startId = Math.floor(Math.random() * 1000000) + 2000000;
+
 module.exports = (sequelize) => {
   const order = sequelize.define('orders', {
     customerNumber: {
@@ -35,9 +38,10 @@ module.exports = (sequelize) => {
     },
   }, {
     freezeTableName: true,
-    initialAutoIncrement: '1000100',
+    initialAutoIncrement: startId,
     classMethods: {
       associate(models) {
+        this.hasOne(models.orderShippingAddresses);
         this.hasOne(models.orderPayments);
         this.hasMany(models.orderDetails);
       },

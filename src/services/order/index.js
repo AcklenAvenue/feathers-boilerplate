@@ -2,6 +2,7 @@ const service = require('feathers-sequelize');
 const order = require('./order-model');
 const orderDetail = require('./orderDetail-model');
 const orderPayment = require('./orderPayment-model');
+const orderShippingAddress = require('./orderShippingAddress-model');
 const hooks = require('./hooks');
 
 module.exports = function () {
@@ -9,6 +10,7 @@ module.exports = function () {
 
   orderDetail(app.get('sequelize'));
   orderPayment(app.get('sequelize'));
+  orderShippingAddress(app.get('sequelize'));
 
   const options = {
     Model: order(app.get('sequelize')),

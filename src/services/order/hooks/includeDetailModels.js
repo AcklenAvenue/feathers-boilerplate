@@ -12,7 +12,9 @@ module.exports = function (options) {
   return function (hook) {
     const sequelize = hook.app.get('sequelize')
     hook.params.sequelize = {
-      include: [{ model: sequelize.models.orderDetails }, { model: sequelize.models.orderPayments }]
+      include: [{ model: sequelize.models.orderDetails },
+                { model: sequelize.models.orderPayments },
+                { model: sequelize.models.orderShippingAddress }]
     }
     hook.includeDetailModels = true;
   };
