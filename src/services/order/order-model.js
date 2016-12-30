@@ -36,6 +36,14 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    shippingServiceToken: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    assistShippingService: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   }, {
     freezeTableName: true,
     initialAutoIncrement: startId,
