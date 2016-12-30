@@ -101,7 +101,7 @@ gulp.task('unzip-dev', function () {
 
 gulp.task('install-dev', function () {
   return gulpSSH
-    .shell(['cd builds', 'npm install', 'pm2 restart all'], {filePath: 'shell.log'})
+    .shell(['cd builds', 'yarn', 'pm2 restart all'], {filePath: 'shell.log'})
     .pipe(gulp.dest('logs'))
     .on('error', function(err) {
       console.log(err);
