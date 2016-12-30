@@ -39,7 +39,7 @@ module.exports = (sequelize) => {
       associate(models) {
         this.belongsTo(models.users);
         this.hasOne(models.billingAddresses);
-        this.hasMany(models.orderShippingAddresses);
+        this.hasMany(models.shippingAddresses);
         this.hasMany(models.customerCreditCards);
       },
     },
