@@ -15,6 +15,7 @@ gulp.task('zip-app', () => {
       ,'./config/**/*.*'
       ,'./public/**/*.*'
       ,'default.json.default'
+      ,'yarn.lock'
 
     ], {
       base: './'
