@@ -4,7 +4,7 @@ set -eo pipefail
 echo "--- Set Node Version"
 . "$NVM_DIR/nvm.sh"
 nvm current
-nvm use default
+nvm use 6.5.0
 echo "--- Install Dependencies"
 yarn
 echo "--- Build"
