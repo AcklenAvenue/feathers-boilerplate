@@ -84,7 +84,6 @@
     "jshint": "^2.9.3",
     "merge2": "^1.0.2",
     "mocha": "^3.1.0",
-    "request": "^2.75.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.2.2",
     "tslint": "^3.15.1",
