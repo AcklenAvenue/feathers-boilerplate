@@ -52,7 +52,6 @@ class Shippo {
   getAllShippingServiceList() {
     const allRates = this.shipmentConfig.carriersAndServices
       .map(carrier => carrier.carrierServices);
-    console.log(_.flattenDeep(allRates));
     return _.flattenDeep(allRates);
   }
 
