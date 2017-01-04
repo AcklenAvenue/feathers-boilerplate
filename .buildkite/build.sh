@@ -9,6 +9,6 @@ echo "--- Install Dependencies"
 yarn
 echo "--- Build"
 gulp config-replace-secrets
-#gulp clean-dist
-#gulp compile
-#gulp zip-app
+gulp clean-dist
+gulp compile
+gulp zip-app

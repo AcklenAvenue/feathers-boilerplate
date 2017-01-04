@@ -9,7 +9,6 @@ steps:
 
   - name: ':fire: Test'
     command: '/.buildkite/test.sh'
-    branches: 'develop staging master'
     agents:
       node: 'true'
       backend: 'true'
