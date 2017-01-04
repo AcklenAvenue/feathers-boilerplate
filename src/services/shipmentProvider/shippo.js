@@ -49,6 +49,12 @@ class Shippo {
     };
   }
 
+  getAllShippingServiceList() {
+    const allRates = this.shipmentConfig.carriersAndServices
+      .map(carrier => carrier.carrierServices);
+    return _.flattenDeep(allRates);
+  }
+
   getShipmentOptions(addressTo, orderTotal) {
     const orderWeight = _.ceil(orderTotal / this.shipmentConfig.dollarToLBSRatio);
     const packages = this.getPackages(orderWeight, this.shipmentConfig.boxes);
@@ -64,18 +70,28 @@ class Shippo {
     }
     return new Promise((resolve, reject) => {
       this.shippo.shipment.create(shipment).then((response) => {
-        const rates = response.rates_list.map(rate => _.pick(rate, [
-          'object_state',
-          'amount',
-          'currency',
-          'provider',
-          'provider_image_75',
-          'provider',
-          'provider_image_200',
-          'servicelevel_name',
-          'servicelevel_token',
-          'days']));
-        resolve(rates);
+        const allAssistRates = this.getAllShippingServiceList();
+        const rates = response.rates_list.map((rate) => {
+          const rateToReturn = _.pick(rate, [
+            'object_state',
+            'amount',
+            'currency',
+            'provider',
+            'provider_image_75',
+            'provider',
+            'provider_image_200',
+            'servicelevel_name',
+            'servicelevel_token',
+            'days']);
+          const assist = _.find(allAssistRates, assistRate =>
+            assistRate.shippoServiceToken === rateToReturn.servicelevel_token);
+          if (!assist) {
+            return undefined;
+          }
+          rateToReturn.assistServiceCode = assist.assistServiceCode;
+          return rateToReturn;
+        });
+        resolve(_.filter(rates, rate => rate));
       }, (error) => {
         reject(error);
       });
