@@ -8,7 +8,7 @@ nvm use 6.5.0
 echo "--- Install Dependencies"
 yarn
 echo "--- Build"
-#gulp config-replace-secrets
+gulp config-replace-secrets
 #gulp clean-dist
 #gulp compile
 #gulp zip-app
