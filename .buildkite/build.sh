@@ -6,7 +6,7 @@ echo "--- Set Node Version"
 nvm current
 nvm use 6.5.0
 echo "--- Install Dependencies"
-sudo yarn
+yarn
 echo "--- Build"
 #gulp config-replace-secrets
 #gulp clean-dist
