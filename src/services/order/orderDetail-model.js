@@ -41,6 +41,10 @@ module.exports = (sequelize) => {
       type: Sequelize.DOUBLE,
       allowNull: false,
     },
+    tax: {
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
   }, {
     freezeTableName: true,
     classMethods: {
