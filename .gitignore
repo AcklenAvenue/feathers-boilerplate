@@ -77,7 +77,6 @@ zip
 # Default configuration
 config/default.json
 config/develop.json
-config/staging.json
 config/production.json
 bk-*.log
 
