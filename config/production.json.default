@@ -31,7 +31,8 @@
     "port": $AS400PORT,
     "library": "$AS4000LIBRARY",
     "database": "$AS400DATABASE",
-    "companyNumber": "$AS400CN"
+    "companyNumber": "$AS400CN",
+    "merchantCode": "$MERCHANTCODE"
   },
   "payments": {
     "url": "$PAYURL",
@@ -143,5 +144,17 @@
       "distance_unit": "in",
       "mass_unit": "lb"
     }
+  },
+  "taxes": {
+    "taxCloudUrl": "https://api.taxcloud.net/1.0/TaxCloud/Lookup",
+    "apiKey": "",
+    "loginId": "",
+    "ticForCartItems": "",
+    "usTaxableStates": [
+      "TX",
+      "CO",
+      "NY"
+    ],
+    "canadaTaxRate": 0.05
   }
 }
