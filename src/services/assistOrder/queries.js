@@ -46,7 +46,7 @@ class OrderQueries {
 
   getOrderDetail(orderNumber, sequence, offerId, keyCode, customerNumber,
     shippingAddressSequence, productCode, unitOfMeasure, productQuantity,
-    productValue, currencyCode, shippingService, userEmail) {
+    productValue, tax, currencyCode, shippingService, userEmail) {
     const insertOrderDetail = squel.insert().into(this.getTable('T_ORD_DTL'))
         .setFields(
 
@@ -65,9 +65,9 @@ class OrderQueries {
         ORDD_QTSHP: null,
         ORDD_LSTPR: productValue,
         ORDD_DSAMT: null,
-        ORDD_EXPRC: productValue,
-        ORDD_TXAMT: 0.0000,
-        ORDD_EXAMT: null,
+        ORDD_EXPRC: productValue * productQuantity,
+        ORDD_TXAMT: tax,
+        ORDD_EXAMT: (productValue * productQuantity) + tax,
         ORDD_FRAMT: 0.0000,
         ORDD_CURCD: currencyCode,
         ORDD_RQDDT: null,
@@ -170,7 +170,7 @@ class OrderQueries {
         detail.offerId, detail.keyCode, orderInfo.customerNumber,
         orderInfo.orderShippingAddress.assistSequence,
         detail.productCode, detail.unitOfMeasure, detail.productQuantity, detail.productValue,
-        orderInfo.currencyCode, orderInfo.assistShippingService, userEmail).toString()
+        detail.tax, orderInfo.currencyCode, orderInfo.assistShippingService, userEmail).toString()
     );
     const paymentQuery = this.getOrderPayment(orderInfo.id, orderInfo.orderPayment.paymentType,
       orderInfo.orderPayment.paymentNumber, orderInfo.orderPayment.paymentAmount,
