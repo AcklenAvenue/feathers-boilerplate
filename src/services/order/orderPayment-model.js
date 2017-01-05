@@ -39,11 +39,19 @@ module.exports = (sequelize) => {
     },
     authorizationDate: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     creditCardCVV: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
+    },
+    checkAccountType: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    checkRoutingNumber: {
+      type: Sequelize.STRING,
+      allowNull: true,
     },
   }, {
     freezeTableName: true,
