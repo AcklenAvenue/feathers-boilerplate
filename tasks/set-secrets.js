@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const fs = require('fs');
 const replace = require('gulp-replace');
 const rename = require('gulp-rename');
-const environment = process.env.ENVIRONMENT || 'staging';
+const environment = process.env.ENVIRONMENT || 'dev';
 var AS400HOST = "";
 var AS400USER = "";
 var AS400PASSWORD = "";
@@ -27,13 +27,13 @@ if (environment === "dev") {
   AS4000LIBRARY = process.env.AS4000LIBRARY_DEV;
   AS400DATABASE = process.env.AS400DATABASE_DEV;
   AS400CN = process.env.AS400CN_DEV;
-  PAYURL = process.env.PAYURL_DEV;
-  PAYAPIKEY = process.env.PAYAPIKEY_DEV;
-  PAYTOKEN = process.env.PAYTOKEN_DEV;
-  PAYHMAC = process.env.PAYHMAC_DEV;
-  PAYTTYPE = process.env.PAYTTYPE_DEV;
-  PAYMERCHANT = process.env.PAYMERCHANT_DEV;
-  MERCHANTCODE = process.env.MERCHANTCODE;
+  PAYURL = process.env.PAYURL_STA;
+  PAYAPIKEY = process.env.PAYAPIKEY_STA;
+  PAYTOKEN = process.env.PAYTOKEN_STA;
+  PAYHMAC = process.env.PAYHMAC_STA;
+  PAYTTYPE = process.env.PAYTTYPE_STA;
+  PAYMERCHANT = process.env.PAYMERCHANT_STA;
+  MERCHANTCODE = process.env.MERCHANTCODE_DEV;
   SHIPPO_KEY = process.env.SHIPPO_KEY;
 }
 if (environment === "staging") {
