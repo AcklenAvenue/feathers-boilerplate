@@ -15,6 +15,6 @@ gulp.task('copy-default-json', function() {
 });
 
 gulp.task('clean', function () {
-    return gulp.src(['config/default.json'], {read: false})
+    return gulp.src(['config/default.json','config/develop.json','config/staging.json'], {read: false})
         .pipe(clean());
 });
