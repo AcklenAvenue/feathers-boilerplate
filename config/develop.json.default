@@ -30,14 +30,14 @@
     }
   },
   "AS400": {
-    "host": "$AS400HOST_DEV",
-    "user": "$AS400USER_DEV",
-    "password": "$AS400PASSWORD_DEV",
-    "port": $AS400PORT_DEV,
-    "library": "$AS4000LIBRARY_DEV",
-    "database": "$AS400DATABASE_DEV",
-    "companyNumber": "$AS400CN_DEV",
-    "merchantCode": "$MERCHANTCODE_DEV"
+    "host": "$AS400HOST",
+    "user": "$AS400USER",
+    "password": "$AS400PASSWORD",
+    "port": $AS400PORT,
+    "library": "$AS4000LIBRARY",
+    "database": "$AS400DATABASE",
+    "companyNumber": "$AS400CN",
+    "merchantCode": "$MERCHANTCODE"
   },
   "payments": {
     "url": "$PAYURL",
