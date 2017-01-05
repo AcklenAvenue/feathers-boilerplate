@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const fs = require('fs');
 const replace = require('gulp-replace');
 const rename = require('gulp-rename');
-const environment = process.env.ENVIRONMENT || 'develop';
+var environment = process.env.ENVIRONMENT || 'dev';
 var AS400HOST = "";
 var AS400USER = "";
 var AS400PASSWORD = "";
@@ -19,7 +19,7 @@ var PAYMERCHANT = "";
 var MERCHANTCODE = "";
 var SHIPPO_KEY = "";
 
-if (environment === "develop") {
+if (environment === "dev") {
   AS400HOST = process.env.AS400HOST_DEV;
   AS400USER = process.env.AS400USER_DEV;
   AS400PASSWORD = process.env.AS400PASSWORD_DEV;
@@ -27,14 +27,15 @@ if (environment === "develop") {
   AS4000LIBRARY = process.env.AS4000LIBRARY_DEV;
   AS400DATABASE = process.env.AS400DATABASE_DEV;
   AS400CN = process.env.AS400CN_DEV;
-  PAYURL = process.env.PAYURL_STA;
-  PAYAPIKEY = process.env.PAYAPIKEY_STA;
-  PAYTOKEN = process.env.PAYTOKEN_STA;
-  PAYHMAC = process.env.PAYHMAC_STA;
-  PAYTTYPE = process.env.PAYTTYPE_STA;
-  PAYMERCHANT = process.env.PAYMERCHANT_STA;
+  PAYURL = process.env.PAYURL_DEV;
+  PAYAPIKEY = process.env.PAYAPIKEY_DEV;
+  PAYTOKEN = process.env.PAYTOKEN_DEV;
+  PAYHMAC = process.env.PAYHMAC_DEV;
+  PAYTTYPE = process.env.PAYTTYPE_DEV;
+  PAYMERCHANT = process.env.PAYMERCHANT_DEV;
   MERCHANTCODE = process.env.MERCHANTCODE_DEV;
-  SHIPPO_KEY = process.env.SHIPPO_KEY;
+  SHIPPO_KEY = process.env.SHIPPO_KEY_DEV;
+  environment = "develop"
 }
 if (environment === "staging") {
   AS400HOST = process.env.AS400HOST_STA;
@@ -50,8 +51,8 @@ if (environment === "staging") {
   PAYHMAC = process.env.PAYHMAC_STA;
   PAYTTYPE = process.env.PAYTTYPE_STA;
   PAYMERCHANT = process.env.PAYMERCHANT_STA;
-  MERCHANTCODE = process.env.MERCHANTCODE;
-  SHIPPO_KEY = process.env.SHIPPO_KEY;
+  MERCHANTCODE = process.env.MERCHANTCODE_STA;
+  SHIPPO_KEY = process.env.SHIPPO_KEY_STA;
 
 }
 if (environment === "production") {
@@ -73,6 +74,7 @@ if (environment === "production") {
 
 gulp.task('config-replace-secrets', function() {
   var file_name = "config/" + environment + ".json.default";
+  console.log(file_name);
   gulp.src([file_name])
     .pipe(replace('$AS400HOST', AS400HOST))
     .pipe(replace('$AS400USER', AS400USER))

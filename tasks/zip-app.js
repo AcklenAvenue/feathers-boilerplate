@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const zip = require('gulp-zip');
 
-const environment = process.env.ENVIRONMENT || 'develop';
+const environment = process.env.ENVIRONMENT || 'dev';
 const appName = 'indigo-backend';
 
 gulp.task('zip-app', () => {
