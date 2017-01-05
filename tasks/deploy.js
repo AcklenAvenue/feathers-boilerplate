@@ -3,7 +3,7 @@ const runSequence = require('run-sequence');
 const scp = require('gulp-scp2');
 const GulpSSH = require('gulp-ssh')
 
-const environment = process.env.ENVIRONMENT || 'develop';
+const environment = process.env.ENVIRONMENT || 'dev';
 
 var ENVPASSWORD = "";
 var ENVUSER = "";
