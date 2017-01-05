@@ -1,0 +1,165 @@
+{
+  "host": "indigo-backend-dev.acklenavenueclient.com",
+  "port": 3030,
+  "mysql": "mysql://admin:admin123@indigo-mysql-dev.c0xjitcfqke4.us-east-1.rds.amazonaws.com:3306/indigo_mysql_dev",
+  "public": "../public/",
+  "auth": {
+    "idField": "id",
+    "token": {
+      "secret": "wSzT/XLoMCO2JZvDQohu9iusdSG1nSPYukn4j3Ls02kd7dJJrQETDcagvRclQON9XgPBdPvCd5zpshINr2EdIQ=="
+    },
+    "local": {},
+    "facebook": {
+      "clientID": "your facebook client id",
+      "clientSecret": "your facebook client secret",
+      "permissions": {
+        "scope": [
+          "public_profile",
+          "email"
+        ]
+      }
+    },
+    "google": {
+      "clientID": "your google client id",
+      "clientSecret": "your google client secret",
+      "permissions": {
+        "scope": [
+          "profile"
+        ]
+      }
+    }
+  },
+  "AS400": {
+    "host": "$AS400HOST",
+    "user": "$AS400USER",
+    "password": "$AS400PASSWORD",
+    "port": $AS400PORT,
+    "library": "$AS4000LIBRARY",
+    "database": "$AS400DATABASE",
+    "companyNumber": "$AS400CN",
+    "merchantCode": "$MERCHANTCODE"
+  },
+  "payments": {
+    "url": "$PAYURL",
+    "apiKey": "$PAYAPIKEY",
+    "paymentToken": "$PAYTOKEN",
+    "hmacKey": "$PAYHMAC",
+    "tokenType": "$PAYTTYPE",
+    "merchantReference": "$PAYMERCHANT"
+  },
+  "shipment": {
+    "shippoKey": "$SHIPPO_KEY",
+    "dollarToLBSRatio": 14,
+    "carriersAndServices": [
+      {
+        "carrierName": "fedex",
+        "carrierServices": [
+          {
+            "shippoServiceToken": "fedex_express_saver",
+            "assistServiceCode": "FE2"
+          },
+          {
+            "shippoServiceToken": "fedex_2_day",
+            "assistServiceCode": "FE3"
+          },
+          {
+            "shippoServiceToken": "fedex_standard_overnight",
+            "assistServiceCode": "FE4"
+          },
+          {
+            "shippoServiceToken": "fedex_priority_overnight",
+            "assistServiceCode": "FE5"
+          },
+          {
+            "shippoServiceToken": "fedex_ground",
+            "assistServiceCode": "FE6"
+          },
+          {
+            "shippoServiceToken": "fedex_international_priority",
+            "assistServiceCode": "FE8"
+          },
+          {
+            "shippoServiceToken": "fedex_international_economy",
+            "assistServiceCode": "FE7"
+          }
+        ]
+      }
+    ],
+    "boxes": [
+      {
+        "max_weight": 6,
+        "cubic_inces": 324,
+        "length": 12,
+        "width": 9,
+        "height": 3
+      },
+      {
+        "max_weight": 11,
+        "cubic_inces": 462,
+        "length": 14,
+        "width": 11,
+        "height": 3
+      },
+      {
+        "max_weight": 13,
+        "cubic_inces": 756,
+        "length": 12,
+        "width": 9,
+        "height": 7
+      },
+      {
+        "max_weight": 14,
+        "cubic_inces": 924,
+        "length": 14,
+        "width": 11,
+        "height": 6
+      },
+      {
+        "max_weight": 22,
+        "cubic_inces": 1512,
+        "length": 14,
+        "width": 12,
+        "height": 9
+      },
+      {
+        "max_weight": 40,
+        "cubic_inces": 1944,
+        "length": 18,
+        "width": 12,
+        "height": 9
+      },
+      {
+        "max_weight": 50,
+        "cubic_inces": 2808,
+        "length": 18,
+        "width": 13,
+        "height": 12
+      }
+    ],
+    "addressFrom": {
+      "object_purpose": "QUOTE",
+      "name": "Inquisicorp",
+      "street1": "8042 S. Grant Way",
+      "city": "Littleton",
+      "state": "CO",
+      "zip": "80110",
+      "country": "USA"
+    },
+    "parcelUnits": {
+      "distance_unit": "in",
+      "mass_unit": "lb"
+    }
+  },
+  "taxes": {
+    "taxCloudUrl": "https://api.taxcloud.net/1.0/TaxCloud/Lookup",
+    "apiKey": "",
+    "loginId": "",
+    "ticForCartItems": "",
+    "usTaxableStates": [
+      "TX",
+      "CO",
+      "NY"
+    ],
+    "canadaTaxRate": 0.05
+  }
+}
