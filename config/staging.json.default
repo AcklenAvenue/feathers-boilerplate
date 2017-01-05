@@ -144,5 +144,17 @@
       "distance_unit": "in",
       "mass_unit": "lb"
     }
+  },
+  "taxes": {
+    "taxCloudUrl": "https://api.taxcloud.net/1.0/TaxCloud/Lookup",
+    "apiKey": "",
+    "loginId": "",
+    "ticForCartItems": "",
+    "usTaxableStates": [
+      "TX",
+      "CO",
+      "NY"
+    ],
+    "canadaTaxRate": 0.05
   }
 }

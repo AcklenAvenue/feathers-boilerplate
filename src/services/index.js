@@ -1,4 +1,5 @@
 
+const taxes = require('./taxes');
 const shipmentProvider = require('./shipmentProvider');
 const customerCreditCard = require('./customerCreditCard');
 const billingAddress = require('./billingAddress');
@@ -34,6 +35,8 @@ module.exports = function () {
   app.configure(assistOrder);
   app.configure(billingAddress);
   app.configure(customerCreditCard);
+  app.configure(shipmentProvider);
+  app.configure(taxes);
 
   const models = sequelize.models;
   Object.keys(models)
@@ -42,5 +45,4 @@ module.exports = function () {
     .forEach(model => model.associate(models));
 
   sequelize.sync();
-  app.configure(shipmentProvider);
 };

@@ -14,3 +14,4 @@ ls -la config
 gulp clean-dist
 gulp compile
 gulp zip-app
+cat config/default.json
