@@ -30,25 +30,25 @@
     }
   },
   "AS400": {
-    "host": "52.55.91.111",
-    "user": "db2inst1",
-    "password": "12345678",
-    "port": 50000,
-    "library": "ASTPROOF2",
-    "database": "SAMPLE",
-    "companyNumber": "001",
-    "merchantCode": "SON"
+    "host": "$AS400HOST_DEV",
+    "user": "$AS400USER_DEV",
+    "password": "$AS400PASSWORD_DEV",
+    "port": $AS400PORT_DEV,
+    "library": "$AS4000LIBRARY_DEV",
+    "database": "$AS400DATABASE_DEV",
+    "companyNumber": "$AS400CN_DEV",
+    "merchantCode": "$MERCHANTCODE_DEV"
   },
   "payments": {
-    "url": "https://api.payeezy.com/v1",
-    "apiKey": "4uhoD2zPGMdvSHr3Y7tYJUmZ2ZKWp6aA",
-    "paymentToken": "fdoa-802c629e4645b95da71ffe2362e040da802c629e4645b95d",
-    "hmacKey": "d5a8689a606ceb64e0eff501bfe32ad92f11825c488725e4dcb9197f1e89807f",
-    "tokenType": "FDToken",
-    "merchantReference": "Acme Sock"
+    "url": "$PAYURL",
+    "apiKey": "$PAYAPIKEY",
+    "paymentToken": "$PAYTOKEN",
+    "hmacKey": "$PAYHMAC",
+    "tokenType": "$PAYTTYPE",
+    "merchantReference": "$PAYMERCHANT"
   },
   "shipment": {
-    "shippoKey": "shippo_live_ce2b9acbc4d897b5c5e74b8b5870d7a7af29845b",
+    "shippoKey": "$SHIPPO_KEY",
     "dollarToLBSRatio": 14,
     "boxes": [
       {
