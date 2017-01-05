@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const fs = require('fs');
 const replace = require('gulp-replace');
 const rename = require('gulp-rename');
-const environment = process.env.ENVIRONMENT || 'dev';
+const environment = process.env.ENVIRONMENT || 'develop';
 var AS400HOST = "";
 var AS400USER = "";
 var AS400PASSWORD = "";
@@ -19,7 +19,7 @@ var PAYMERCHANT = "";
 var MERCHANTCODE = "";
 var SHIPPO_KEY = "";
 
-if (environment === "dev") {
+if (environment === "develop") {
   AS400HOST = process.env.AS400HOST_DEV;
   AS400USER = process.env.AS400USER_DEV;
   AS400PASSWORD = process.env.AS400PASSWORD_DEV;
