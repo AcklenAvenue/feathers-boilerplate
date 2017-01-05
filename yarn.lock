@@ -1755,9 +1755,9 @@ generic-pool@2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/generic-pool/-/generic-pool-2.4.2.tgz#886bc5bf0beb7db96e81bcbba078818de5a62683"
 
-"get-parameter-names@git+https://github.com/benbotto/get-parameter-names.git":
+"get-parameter-names@https://github.com/benbotto/get-parameter-names":
   version "0.3.2"
-  resolved "git+https://github.com/benbotto/get-parameter-names.git#ef34a1798aebb9bcf029a408b2b7438daf45c036"
+  resolved "https://github.com/benbotto/get-parameter-names#ef34a1798aebb9bcf029a408b2b7438daf45c036"
 
 get-stdin@^4.0.1:
   version "4.0.1"
@@ -1965,7 +1965,7 @@ growl@1.9.2:
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.9.2.tgz#0ea7743715db8d8de2c5ede1775e1b45ac85c02f"
 
-gulp-clean@~0.3.2:
+gulp-clean@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/gulp-clean/-/gulp-clean-0.3.2.tgz#a347d473acea40182f935587a451941671928102"
   dependencies:
